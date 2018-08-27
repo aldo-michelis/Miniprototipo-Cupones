@@ -7,11 +7,11 @@
     <title>Home | {{ config('app.name') }}</title>
 </head>
 <body>
-<a href="{{ route('clientes.registrar') }}">Registro para Clientes</a><br>
-<a href="{{ route('negocios.registrar') }}">Registro para Negocios</a><br>
 @if( Auth::check() )
     <a href="{{ route('logout') }}">Salir</a>
 @else
+    <a href="{{ route('clientes.registrar') }}">Registro para Clientes</a><br>
+    <a href="{{ route('negocios.registrar') }}">Registro para Negocios</a><br>
     <a href="{{ route('login') }}">Acceder</a>
 @endif
 </body>
