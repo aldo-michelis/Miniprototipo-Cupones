@@ -7,7 +7,12 @@
     <title>Valida Codigos | {{ config('app.name') }}</title>
 </head>
 <body>
-<h1>Validar Cupones</h1>
+<h1>Aplicacion de Comerciantes</h1>
+<label for="">Promos Entregadas: </label>
+<br>
+<label for="">$ {{$total}} </label>
+<br>
+<h3>Validar Cupones</h3>
 @if( !isset($cupon) )
 <form action="{{ route('negocios.buscar') }}" method="post">
     {{ csrf_field() }}

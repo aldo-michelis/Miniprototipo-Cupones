@@ -7,6 +7,11 @@
     <title>Document</title>
 </head>
 <body>
+<h1>Aplicacion de Comerciantes</h1>
+<label for="">Promos Entregadas: </label>
+<br>
+<label for="">$ {{$total}} </label>
+<br>
 <form action="{{ route('negocios.salvar') }}" method="post">
     {{ csrf_field() }}
     <input type="hidden" name="user_id" value="{{ Auth::id() }}">
