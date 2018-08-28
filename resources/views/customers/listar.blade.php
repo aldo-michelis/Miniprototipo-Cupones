@@ -7,6 +7,12 @@
     <title>Buscar Cupones | {{ config('app.name') }}</title>
 </head>
 <body>
+<h1>Aplicación de Clientes</h1>
+<label for="">Consumos Gratuitos Totales:</label>
+<br>
+<label for="">${{ number_format($total, 2, '.', ',')    }}</label>
+<br>
+<br>
 <table border="1">
     <thead>
     <tr>

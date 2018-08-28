@@ -7,6 +7,12 @@
     <title>Obtener Cupon | {{ config('app.name') }}</title>
 </head>
 <body>
+<h1>Aplicación de Clientes</h1>
+<label for="">Consumos Gratuitos Totales:</label>
+<br>
+<label for="">${{ number_format($total, 2, '.', ',')    }}</label>
+<br>
+<br>
 <label for="">Negocio: {{ $coupon->user->name }}</label>
 <br>
 <label for="">Valor: ${{ number_format($coupon->value,2,'.',',') }}</label>

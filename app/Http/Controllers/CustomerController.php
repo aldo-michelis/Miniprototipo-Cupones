@@ -12,7 +12,16 @@ use Faker;
 class CustomerController extends Controller
 {
     public function index(){
-        return view('customers.index');
+        $total = 0;
+        $details = CouponDetail::with('coupon')
+            ->where('status', 1)
+            ->where('user_id', Auth::id())
+            ->get();
+
+        foreach ( $details as $detail ) {
+                $total += $detail->coupon->value;
+        }
+        return view('customers.index',['total' => $total]);
     }
 
     public function registrar(){
@@ -26,11 +35,29 @@ class CustomerController extends Controller
 
     public function listarCodigos()
     {
+        $total = 0;
+        $details = CouponDetail::with('coupon')
+            ->where('status', 1)
+            ->where('user_id', Auth::id())
+            ->get();
+
+        foreach ( $details as $detail ) {
+            $total += $detail->coupon->value;
+        }
         $cuopons = Coupon::with('user')->get();
-        return view('customers.listar',['cuopons' => $cuopons]);
+        return view('customers.listar',['cuopons' => $cuopons,'total' => $total]);
     }
 
     public function cupon($id){
+        $total = 0;
+        $details = CouponDetail::with('coupon')
+            ->where('status', 1)
+            ->where('user_id', Auth::id())
+            ->get();
+
+        foreach ( $details as $detail ) {
+            $total += $detail->coupon->value;
+        }
 
         // TODO Revisar que se contabilicer la cantidad de cupones disponibles.
 
@@ -46,7 +73,7 @@ class CustomerController extends Controller
                 'user_id' => Auth::id()
             ]);
             $coupon = Coupon::with(['user','details'])->where('id', $id)->first();
-            return view('customers.cupon', ['coupon' => $coupon]);
+            return view('customers.cupon', ['coupon' => $coupon,'total' => $total]);
         }
     }
 }
