@@ -49,22 +49,20 @@ class CustomerController extends Controller
     }
 
     public function cupon($id){
-        $total = 0;
-        $details = CouponDetail::with('coupon')
-            ->where('status', 1)
-            ->where('user_id', Auth::id())
-            ->get();
-
-        foreach ( $details as $detail ) {
-            $total += $detail->coupon->value;
-        }
-
-        // TODO Revisar que se contabilicer la cantidad de cupones disponibles.
-
         $check = CouponDetail::where('coupon_id', $id)->where('user_id', Auth::id())->get();
         if( count($check) > 0 ){
             return redirect()->route('clientes.listar');
         }else{
+            $total = 0;
+            $details = CouponDetail::with('coupon')
+                ->where('status', 1)
+                ->where('user_id', Auth::id())
+                ->get();
+
+            foreach ( $details as $detail ) {
+                $total += $detail->coupon->value;
+            }
+
             $faker = Faker\Factory::create();
             CouponDetail::create([
                 'coupon_id' => $id,
@@ -73,6 +71,9 @@ class CustomerController extends Controller
                 'user_id' => Auth::id()
             ]);
             $coupon = Coupon::with(['user','details'])->where('id', $id)->first();
+            $coupon->update([
+                'qty' => ($coupon->qty - 1)
+            ]);
             return view('customers.cupon', ['coupon' => $coupon,'total' => $total]);
         }
     }
