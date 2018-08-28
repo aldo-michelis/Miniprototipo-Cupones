@@ -17,6 +17,8 @@
 <br>
 <label for="">Valor: ${{ number_format($coupon->value,2,'.',',') }}</label>
 <br>
+<label for="">Descripción: {{ $coupon->description }}</label>
+<br>
 <label for="">Codigo: {{ $coupon->details[0]->code }}</label>
 <br>
 <br>

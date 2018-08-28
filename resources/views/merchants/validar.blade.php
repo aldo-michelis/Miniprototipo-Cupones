@@ -25,7 +25,7 @@
 @if( isset($cupon) )
     <form action="{{ route('negocios.buscar') }}" method="post">
         {{ csrf_field() }}
-        <label for="">{{ $cupon->coupon->description }}</label><br>
+        <label for="">Descripción: {{ $cupon->coupon->description }}</label><br>
         <input type="hidden" name="cupon_id" id="cupon_id" value="{{ $cupon->id }}">
         <input type="submit" value="Validar Código">
     </form>

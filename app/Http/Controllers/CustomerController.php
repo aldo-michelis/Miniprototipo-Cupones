@@ -7,7 +7,6 @@ use App\User;
 use App\Coupon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
-use Faker;
 
 class CustomerController extends Controller
 {
@@ -44,15 +43,22 @@ class CustomerController extends Controller
         foreach ( $details as $detail ) {
             $total += $detail->coupon->value;
         }
-        $cuopons = Coupon::with('user')->get();
+        $cuopons = Coupon::with('user')->where('qty', '>', '0')->get();
         return view('customers.listar',['cuopons' => $cuopons,'total' => $total]);
     }
 
     public function cupon($id){
-        $check = CouponDetail::where('coupon_id', $id)->where('user_id', Auth::id())->get();
+        $check = CouponDetail::where('coupon_id', $id)
+            ->where('user_id', Auth::id())
+            ->get();
         if( count($check) > 0 ){
             return redirect()->route('clientes.listar');
         }else{
+            $otherCheck = Coupon::find($id);
+
+            if( $otherCheck->qty <= 0 )
+                return redirect()->route('clientes.listar');
+
             $total = 0;
             $details = CouponDetail::with('coupon')
                 ->where('status', 1)
@@ -62,11 +68,9 @@ class CustomerController extends Controller
             foreach ( $details as $detail ) {
                 $total += $detail->coupon->value;
             }
-
-            $faker = Faker\Factory::create();
             CouponDetail::create([
                 'coupon_id' => $id,
-                'code' => $faker->word,
+                'code' => $this->getRandomCode(),
                 'status' => 0,
                 'user_id' => Auth::id()
             ]);

@@ -118,7 +118,7 @@ class MerchantController extends Controller
                 ->first();
 
             if (isset($coupon)) {
-                return view('merchants.validar', ['cupon' => $coupon]);
+                return view('merchants.validar', ['cupon' => $coupon, 'total' => $total]);
             } else {
                 return "Codigo no Valido <a href=" . route('negocios.validar') . ">Regresar</a>";
             }
