@@ -24,6 +24,7 @@ class CreateCouponsTable extends Migration
             $table->decimal('value');
             $table->text('description');
             $table->integer('user_id');
+            $table->string('url')->default('#');
             $table->timestamps();
         });
     }

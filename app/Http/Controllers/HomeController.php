@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Coupon;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 
 class HomeController extends Controller
 {
@@ -22,5 +24,19 @@ class HomeController extends Controller
         }else{
             return view('index');
         }
+    }
+
+    public function preconfigurar(){
+        return view('merchants.agregar',['preconf' => 1]);
+    }
+
+    public function promocionSalvar(){
+        $cupon = Coupon::create(Input::all());
+        return redirect()->route('preconfigurar');
+    }
+
+    public function promocionUrl($url){
+        $coupon = Coupon::where('url', $url)->first();
+        return view('customers.registrar',['coupon' => $coupon]);
     }
 }

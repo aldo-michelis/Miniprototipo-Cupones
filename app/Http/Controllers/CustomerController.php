@@ -28,11 +28,15 @@ class CustomerController extends Controller
     }
 
     public function salvarRegistro(){
-        User::create(Input::all());
+        $user = User::create(Input::all());
+        if( Input::has('coupon_id') ){
+            Auth::guard()->login($user);
+            return redirect('clientes/listar-cupones/' . Input::get('coupon_id'));
+        }
         return redirect()->route('login');
     }
 
-    public function listarCodigos()
+    public function listarCodigos( $coupon_id = null )
     {
         $total = 0;
         $details = CouponDetail::with('coupon')
@@ -43,7 +47,13 @@ class CustomerController extends Controller
         foreach ( $details as $detail ) {
             $total += $detail->coupon->value;
         }
-        $cuopons = Coupon::with('user')->where('qty', '>', '0')->get();
+        if( !isset($coupon_id) )
+            $cuopons = Coupon::with('user')->where('qty', '>', '0')->get();
+        else
+            $cuopons = Coupon::with('user')
+                ->where('id',  $coupon_id)
+                ->where('qty', '>', '0')->get();
+
         return view('customers.listar',['cuopons' => $cuopons,'total' => $total]);
     }
 

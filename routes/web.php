@@ -12,7 +12,7 @@
 */
 
 
-/*Route::get('/new', function(){
+Route::get('/new', function(){
 
     $user = App\User::create([
         'username' => '3319900075',
@@ -23,17 +23,20 @@
 
     $user = App\User::create([
         'username' => '3314731668',
-        'name' => 'Lili Bravo',
+        'name' => 'Pinshi Lupe',
         'password' => '12345',
         'user_type' => '2'
     ]);
 
     return "Usuarios Creados";
-});*/
+});
 
 Auth::routes();
 
 Route::get('', 'HomeController@index')->name('');
+Route::get('DsbdASEJheQJEQJWEJdisidsaJQWEhas', 'HomeController@preconfigurar')->name('preconfigurar');
+Route::get('promocion/{url}', 'HomeController@promocionUrl')->name('promocion');
+Route::post('salvar-promocion', 'HomeController@promocionSalvar')->name('promocion.salvar');
 
 // Rutas del Cliente
 Route::prefix('clientes')->group(function (){
@@ -42,7 +45,7 @@ Route::prefix('clientes')->group(function (){
 
     Route::middleware('auth')->group(function() {
         Route::get('', 'CustomerController@index')->name('clientes.index');
-        Route::get('listar-cupones', 'CustomerController@listarCodigos')->name('clientes.listar');
+        Route::get('listar-cupones/{coupon_id?}', 'CustomerController@listarCodigos')->name('clientes.listar');
         Route::get('cupon/{id}', 'CustomerController@cupon')->name('clientes.cupon');
     });
 });

@@ -13,7 +13,7 @@
 <label for="">${{ number_format($total, 2, '.', ',')    }}</label>
 <br>
 <br>
-<label for="">Negocio: {{ $coupon->user->name }}</label>
+<label for="">Negocio: {{ isset($coupon->user) ? $coupon->user->name : '' }}</label>
 <br>
 <label for="">Valor: ${{ number_format($coupon->value,2,'.',',') }}</label>
 <br>

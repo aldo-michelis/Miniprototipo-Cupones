@@ -25,7 +25,7 @@
         <tr>
             <td>{{ $cuopon->id }}</td>
             <td>
-                {{ $cuopon->user->name }} | ${{ $cuopon->value }} | <a href=""  onclick="alert('{{ $cuopon->description }}')">Descripción</a>
+                {{ isset($cuopon->user) ? $cuopon->user->name : '' }} | ${{ $cuopon->value }} | <a href=""  onclick="alert('{{ $cuopon->description }}')">Descripción</a>
                 <br>
                 <a href="{{ route('clientes.cupon',['id' => $cuopon->id]) }}">Seleccionar</a>
             </td>
