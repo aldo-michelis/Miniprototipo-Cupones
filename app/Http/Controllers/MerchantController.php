@@ -124,4 +124,29 @@ class MerchantController extends Controller
             }
         }
     }
+
+    public function preconfigurar(){
+        return view('merchants.agregar',['preconf' => 1]);
+    }
+
+    public function promocionSalvar(){
+        $cupon = Coupon::create(Input::all());
+        return redirect()->route('promocion.ver');
+    }
+
+    public function verPromo($coupon_id){
+        $total = 0;
+        $coupons = Coupon::with(['details' => function($query){
+            $query->where('status', 1)->get();
+        }])->where('user_id', Auth::id())->get();
+
+        foreach ($coupons as $coupon) {
+            foreach ($coupon->details as $detail) {
+                $total += $coupon->value;
+            }
+        }
+        $coupon = Coupon::where('id', $coupon_id)->select('url')->first();
+
+        return view('merchants.promocion',['total' => $total, 'enlace' => $coupon->url]);
+    }
 }

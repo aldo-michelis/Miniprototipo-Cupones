@@ -10,7 +10,7 @@
 <h1>Aplicación de Clientes</h1>
 <label for="">Consumos Gratuitos Totales:</label>
 <br>
-<label for="">${{ number_format($total, 2, '.', ',')    }}</label>
+<label for="">${{ number_format(Auth::user()->totalDePromociones(), 2, '.', ',')    }}</label>
 <br>
 <br>
 <label for="">Negocio: {{ isset($coupon->user) ? $coupon->user->name : '' }}</label>

@@ -34,9 +34,7 @@ Route::get('/new', function(){
 Auth::routes();
 
 Route::get('', 'HomeController@index')->name('');
-Route::get('DsbdASEJheQJEQJWEJdisidsaJQWEhas', 'HomeController@preconfigurar')->name('preconfigurar');
 Route::get('promocion/{url}', 'HomeController@promocionUrl')->name('promocion');
-Route::post('salvar-promocion', 'HomeController@promocionSalvar')->name('promocion.salvar');
 
 // Rutas del Cliente
 Route::prefix('clientes')->group(function (){
@@ -61,5 +59,8 @@ Route::prefix('negocios')->group(function (){
         Route::get('validar-codigos', 'MerchantController@validarCodigos')->name('negocios.validar');
         Route::post('buscar-codigos', 'MerchantController@buscarCodigos')->name('negocios.buscar');
         Route::get('generar-url', 'MerchantController@generarUrl')->name('negocios.generar');
+        Route::get('preconfigurar', 'MerchantController@preconfigurar')->name('preconfigurar');
+        Route::get('ver-promocion/{coupon_id}', 'MerchantController@verPromo')->name('promocion.ver');
+        Route::post('salvar-promocion', 'MerchantController@promocionSalvar')->name('promocion.salvar');
     });
 });

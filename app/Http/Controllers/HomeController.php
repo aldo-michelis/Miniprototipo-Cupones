@@ -26,15 +26,6 @@ class HomeController extends Controller
         }
     }
 
-    public function preconfigurar(){
-        return view('merchants.agregar',['preconf' => 1]);
-    }
-
-    public function promocionSalvar(){
-        $cupon = Coupon::create(Input::all());
-        return redirect()->route('preconfigurar');
-    }
-
     public function promocionUrl($url){
         $coupon = Coupon::where('url', $url)->first();
         return view('customers.registrar',['coupon' => $coupon]);

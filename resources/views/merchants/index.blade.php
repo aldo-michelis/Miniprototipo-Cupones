@@ -16,6 +16,8 @@
     <br>
     <a href="{{ route('negocios.validar') }}">Validar Cupones</a>
     <br>
+    <a href="{{ route('preconfigurar') }}">Cupones Preconfigurados</a>
+    <br>
     <a href="{{ route('logout') }}">Salir</a>
 </body>
 </html>

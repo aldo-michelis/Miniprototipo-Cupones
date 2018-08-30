@@ -9,7 +9,7 @@
 <body>
 @if( isset($preconf) )
     <form action="{{ route('promocion.salvar') }}" method="post">
-        <input type="hidden" id="user_id" name="user_id" value="0">
+        <input type="hidden" id="user_id" name="user_id" value="{{ Auth }}">
         <h3 class="card-title m-t-15">Promocion Preconfigurada.</h3>
         <label for="">Url del Cupon</label>
         <br>

@@ -12,7 +12,6 @@
 @else
     <a href="{{ route('clientes.registrar') }}">Registro para Clientes</a><br>
     <a href="{{ route('negocios.registrar') }}">Registro para Negocios</a><br>
-    <a href="{{ route('preconfigurar') }}">Cupones Preconfigurados</a><br>
     <a href="{{ route('login') }}">Acceder</a>
 @endif
 </body>

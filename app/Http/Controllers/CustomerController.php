@@ -11,16 +11,7 @@ use Illuminate\Support\Facades\Input;
 class CustomerController extends Controller
 {
     public function index(){
-        $total = 0;
-        $details = CouponDetail::with('coupon')
-            ->where('status', 1)
-            ->where('user_id', Auth::id())
-            ->get();
-
-        foreach ( $details as $detail ) {
-                $total += $detail->coupon->value;
-        }
-        return view('customers.index',['total' => $total]);
+        return view('customers.index');
     }
 
     public function registrar(){
@@ -38,46 +29,31 @@ class CustomerController extends Controller
 
     public function listarCodigos( $coupon_id = null )
     {
-        $total = 0;
-        $details = CouponDetail::with('coupon')
-            ->where('status', 1)
-            ->where('user_id', Auth::id())
-            ->get();
+        if( Auth::user()->tieneCuponesActivos() ) {
+            if (!isset($coupon_id))
+                $cuopons = Coupon::with('user')->where('qty', '>', '0')->get();
+            else
+                $cuopons = Coupon::with('user')
+                    ->where('id', $coupon_id)
+                    ->where('qty', '>', '0')->get();
 
-        foreach ( $details as $detail ) {
-            $total += $detail->coupon->value;
+            return view('customers.listar', ['cuopons' => $cuopons]);
         }
-        if( !isset($coupon_id) )
-            $cuopons = Coupon::with('user')->where('qty', '>', '0')->get();
-        else
-            $cuopons = Coupon::with('user')
-                ->where('id',  $coupon_id)
-                ->where('qty', '>', '0')->get();
 
-        return view('customers.listar',['cuopons' => $cuopons,'total' => $total]);
+        return "
+            Ya tienes cupones activos, canjea los que tienes y regresa por mas
+            <a href=". route('clientes.index') .">Volver</a>
+            ";
     }
 
     public function cupon($id){
-        $check = CouponDetail::where('coupon_id', $id)
-            ->where('user_id', Auth::id())
-            ->get();
-        if( count($check) > 0 ){
+        if( Auth::user()->tieneCuponesActivos() ){
             return redirect()->route('clientes.listar');
         }else{
             $otherCheck = Coupon::find($id);
 
             if( $otherCheck->qty <= 0 )
                 return redirect()->route('clientes.listar');
-
-            $total = 0;
-            $details = CouponDetail::with('coupon')
-                ->where('status', 1)
-                ->where('user_id', Auth::id())
-                ->get();
-
-            foreach ( $details as $detail ) {
-                $total += $detail->coupon->value;
-            }
             CouponDetail::create([
                 'coupon_id' => $id,
                 'code' => $this->getRandomCode(),
@@ -88,7 +64,7 @@ class CustomerController extends Controller
             $coupon->update([
                 'qty' => ($coupon->qty - 1)
             ]);
-            return view('customers.cupon', ['coupon' => $coupon,'total' => $total]);
+            return view('customers.cupon', ['coupon' => $coupon]);
         }
     }
 }
