@@ -12,11 +12,17 @@
     <br>
     <label for="">$ {{$total}} </label>
     <br>
-    <a href="{{ route('negocios.agregar') }}">Publicar Cupones</a>
+    <label for="">Saldo en MC: </label>
     <br>
-    <a href="{{ route('negocios.validar') }}">Validar Cupones</a>
+    <label for="">$ {{$total}} </label>
+    <br>
+    <a href="{{ route('negocios.agregar') }}">Publicar Bonos</a>
+    <br>
+    <a href="{{ route('negocios.validar') }}">Validar Bonos</a>
     <br>
     <a href="{{ route('preconfigurar') }}">Cupones Preconfigurados</a>
+    <br>
+    <a href="{{ route('preconfigurar') }}">Cobro con Monedas Circulantes</a>
     <br>
     <a href="{{ route('logout') }}">Salir</a>
 </body>

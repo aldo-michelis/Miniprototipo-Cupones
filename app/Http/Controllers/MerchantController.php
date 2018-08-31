@@ -54,6 +54,8 @@ class MerchantController extends Controller
                 ->withInput();
         }
 
+        // TODO Validar que el valor acumulado de los cupones sea igual o menor a las monedas disponibles
+
         $cupon = Coupon::create(Input::all());
 
         return redirect()->route('negocios.index');
@@ -126,7 +128,17 @@ class MerchantController extends Controller
     }
 
     public function preconfigurar(){
-        return view('merchants.agregar',['preconf' => 1]);
+        $total = 0;
+        $coupons = Coupon::with(['details' => function($query){
+            $query->where('status', 1)->get();
+        }])->where('user_id', Auth::id())->get();
+
+        foreach ($coupons as $coupon) {
+            foreach ($coupon->details as $detail) {
+                $total += $coupon->value;
+            }
+        }
+        return view('merchants.agregar',['preconf' => 1, 'total' => $total]);
     }
 
     public function promocionSalvar(){

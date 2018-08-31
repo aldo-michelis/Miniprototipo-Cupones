@@ -33,6 +33,11 @@ class LoginController extends Controller
             return '/clientes';
     }
 
+    public function showLoginForm()
+    {
+        return redirect('');
+    }
+
     /**
      * Create a new controller instance.
      *
