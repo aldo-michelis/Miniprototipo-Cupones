@@ -53,7 +53,7 @@ class CustomerController extends Controller
     }
 
     public function cupon($id){
-        if( Auth::user()->tieneCuponesActivos() ){
+        if( !Auth::user()->tieneCuponesActivos() ){
             return redirect()->route('clientes.listar');
         }else{
             $otherCheck = Coupon::find($id);
