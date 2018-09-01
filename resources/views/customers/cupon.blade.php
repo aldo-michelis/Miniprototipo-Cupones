@@ -22,6 +22,6 @@
 <label for="">Codigo: {{ $coupon->details[0]->code }}</label>
 <br>
 <br>
-<a href="{{ route('clientes.listar') }}">Seguir buscando</a>
+<a href="{{ route('clientes.index') }}">Seguir buscando</a>
 </body>
 </html>

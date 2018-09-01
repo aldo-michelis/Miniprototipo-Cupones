@@ -72,28 +72,19 @@
                          width="318" height="180" class="card-img-top">
                     <div class="card-body">
                         <h5 class="card-title">{{ $cuopon->user->name }} | {{ $cuopon->moneda() }} $ {{ $cuopon->value }}</h5>
-                        <p class="card-text">{{ $cuopon->description }}</p>
+                        <a
+                                data-toggle="modal"
+                                data-target="#descModal"
+                                class="btn btn-danger desc"
+                                data-desc="{{ $cuopon->description }}"
+                                data-value="{{ $cuopon->value }}"
+                                data-name="{{ $cuopon->user->name }}"
+                                data-currency="{{ $cuopon->moneda() }}"
+                        >Descripción</a>
                     </div>
                 </div>
             </a>
         @endforeach
-
-
-        <div class="card col-md-4"><img
-                    src="http://static1.squarespace.com/static/56244314e4b0fd5726abd8bc/t/5625c078e4b0d3b12af001d9/1499108282075/"
-                    alt="Card image cap" width="318" height="180" class="card-img-top">
-            <div class="card-body">
-                <h5 class="card-title">La Strada</h5>
-                <p class="card-text">Ven a celebrar tu cumpleaños. Tu cuenta, va por nuestra cuenta.</p>
-            </div>
-        </div>
-        <div class="card col-md-4"><img src="fotos/groupon-dibujo-460x279.jpg" alt="Card image cap" width="318"
-                                        height="180" class="card-img-top">
-            <div class="card-body">
-                <h5 class="card-title">Clases de Dibujo a domicilio</h5>
-                <p class="card-text">Paga con monedas electrónicas. $M 450 por 3 meses.</p>
-            </div>
-        </div>
     </section>
 </main>
 
@@ -114,10 +105,46 @@
 </footer>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="{{ asset('') }}js/jquery-3.2.1.min.js"></script>
+<script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="{{ asset('') }}js/popper.min.js"></script>
-<script src="{{ asset('') }}js/bootstrap-4.0.0.js"></script>
+<script src="{{ asset('js/popper.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap-4.0.0.js') }}"></script>
+<script src="{{ asset('js/pages/customers.listar.js') }}"></script>
+
+<!-- Description Modal -->
+<div class="modal fade" id="descModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title" id="modal-title">Descripcion del Cupon</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body" id="modal-body">
+                <p>
+                    Negocio:
+                    <label id="name"></label>
+                </p>
+                <p>
+                    Valor:
+                    <label id="currency"></label> $<label id="value"></label>
+                </p>
+                <p>
+                    Descripcion:
+                    <label id="desc"></label>
+                </p>
+
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer" id="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

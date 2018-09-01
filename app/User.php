@@ -42,7 +42,7 @@ class User extends Authenticatable
 
     public function tieneCuponesActivos(){
         $cpns = CouponDetail::where('user_id', $this->id)->where('status', 1)->get();
-        return (count($cpns) == 0);
+        return !(count($cpns) == 0);
     }
 
     public function totalDePromociones(){

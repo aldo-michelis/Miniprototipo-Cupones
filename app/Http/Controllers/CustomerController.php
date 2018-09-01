@@ -11,7 +11,13 @@ use Illuminate\Support\Facades\Input;
 class CustomerController extends Controller
 {
     public function index(){
-        return view('customers.index');
+
+        $cupon = CouponDetail::with(['coupon' => function($query){
+            $query->with('user')->first();
+            $query->with('user')->first();
+        }])->where('status', 0)
+            ->where('user_id', Auth::id())->first();
+        return view('customers.index', ['coupon' => $cupon]);
     }
 
     public function registrar(){
