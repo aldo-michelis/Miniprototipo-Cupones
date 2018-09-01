@@ -46,15 +46,15 @@ class User extends Authenticatable
     }
 
     public function totalDePromociones(){
-        if ($this->user_type = 2)
+        if ($this->user_type == 2)
             $total = Coupon::join('coupon_details', 'coupons.id', 'coupon_details.coupon_id')
                             ->where('coupon_details.status', 1)
                             ->where('coupon_details.user_id', $this->id)
                             ->select('value')->sum('value');
         else
             $total = Coupon::join('coupon_details', 'coupons.id', 'coupon_details.coupon_id')
-                ->where('coupon_details.status', 1)
                 ->where('coupons.user_id', $this->id)
+                ->where('coupon_details.status', 1)
                 ->select('value')->sum('value');
 
         return $total;

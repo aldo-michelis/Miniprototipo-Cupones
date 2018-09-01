@@ -18,6 +18,7 @@ Route::get('/new', function(){
         'username' => '3319900075',
         'name' => 'Emmanuel Frias',
         'password' => '12345',
+        'mc_saldo' => 100000,
         'user_type' => '1'
     ]);
 
@@ -25,6 +26,7 @@ Route::get('/new', function(){
         'username' => '3314731668',
         'name' => 'Pinshi Lupe',
         'password' => '12345',
+        'mc_saldo' => 100000,
         'user_type' => '2'
     ]);
 

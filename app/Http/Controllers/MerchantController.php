@@ -35,6 +35,7 @@ class MerchantController extends Controller
         $user = User::create($data);
         $data = array_merge($data,['user_id' => $user->id]);
         Merchant::create($data);
+        Auth::guard()->login($user);
         return redirect()->route('login');
     }
 

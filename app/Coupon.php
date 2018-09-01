@@ -17,4 +17,13 @@ class Coupon extends Model
     public function user(){
         return $this->belongsTo('App\User');
     }
+
+    public function moneda(){
+        if( $this->currency == 1 )
+            return 'CMC';
+        else if ( $this->currency == 2 )
+            return 'VP';
+
+        return 'N/A';
+    }
 }

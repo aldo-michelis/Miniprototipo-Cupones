@@ -20,8 +20,8 @@ class CustomerController extends Controller
 
     public function salvarRegistro(){
         $user = User::create(Input::all());
+        Auth::guard()->login($user);
         if( Input::has('coupon_id') ){
-            Auth::guard()->login($user);
             return redirect('clientes/listar-cupones/' . Input::get('coupon_id'));
         }
         return redirect()->route('login');

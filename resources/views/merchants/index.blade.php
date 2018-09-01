@@ -8,14 +8,7 @@
 </head>
 <body>
     <h1>Aplicacion de Comerciantes</h1>
-    <label for="">Promos Entregadas: </label>
-    <br>
-    <label for="">$ {{$total}} </label>
-    <br>
-    <label for="">Saldo en MC: </label>
-    <br>
-    <label for="">$ {{$total}} </label>
-    <br>
+    @include('layouts.totales')
     <a href="{{ route('negocios.agregar') }}">Publicar Bonos</a>
     <br>
     <a href="{{ route('negocios.validar') }}">Validar Bonos</a>

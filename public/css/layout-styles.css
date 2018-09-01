@@ -151,8 +151,6 @@ input[type=tel] {
 	display: block;
 	background-color: #FFFFFF;
 	width: 100%;
-
-	
 }
 .registro-inic {
 	background-color: #FFFFFF;
@@ -191,4 +189,14 @@ input[type=tel] {
 	padding-right: 20px;
 	padding-top: 20px;
 	float: right;
+}
+
+a.carta-promocion{
+	text-decoration: none;
+	color: #000;
+}
+
+a.carta-promocion:hover{
+	text-decoration: none;
+	color: #0056b3;
 }

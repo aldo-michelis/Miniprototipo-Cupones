@@ -8,10 +8,7 @@
 </head>
 <body>
     <h1>Aplicacion de Comerciantes</h1>
-    <label for="">Promos Entregadas: </label>
-    <br>
-    <label for="">$ {{$total}} </label>
-    <br>
+    @include('layouts.totales')
     <h3>Enlace de Promoción</h3>
     <a href="http://cupones.com/promocion/{{ $enlace }}" target="_blank">http://cupones.com/promocion/{{ $enlace }}</a>
 </body>
