@@ -40,8 +40,9 @@ class MerchantController extends Controller
     }
 
     public function salvarCodigos(){
+        $data = Input::all();
 
-        $validator = Validator::make(Input::all(), [
+        $validator = Validator::make($data, [
             'qty' => 'required|numeric',
             'value' => 'required|numeric'
         ],[
@@ -50,14 +51,27 @@ class MerchantController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect('comerciantes/agregar-codigos')
+            return redirect('negocios/agregar-codigos')
                 ->withErrors($validator)
                 ->withInput();
         }
 
-        // TODO Validar que el valor acumulado de los cupones sea igual o menor a las monedas disponibles
+        if( $data['currency'] == 2 ){
+            $monto = $data['value'];
+            $qty = $data['qty'];
+            $saldo = $data['mc_saldo'];
 
-        $cupon = Coupon::create(Input::all());
+            if( ($monto * $qty) >= $saldo ) {
+                return redirect('negocios/agregar-codigos')
+                        ->withErrors(['error' => 'No tiene saldo para esta cantidad de cupones'])
+                        ->withInput();
+            }
+            $user = auth()->user();
+            $user->mc_saldo -= ($monto * $qty);
+            $user->save();
+        }
+
+        $cupon = Coupon::create($data);
 
         return redirect()->route('negocios.index');
     }
