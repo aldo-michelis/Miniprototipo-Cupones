@@ -64,53 +64,26 @@ class MerchantController extends Controller
 
     public function agregarCodigos()
     {
-        $total = 0;
-        $coupons = Coupon::with(['details' => function($query){
-            $query->where('status', 1)->get();
-        }])->where('user_id', Auth::id())->get();
-
-        foreach ($coupons as $coupon) {
-            foreach ($coupon->details as $detail) {
-                $total += $coupon->value;
-            }
-        }
-
-        return view('merchants.agregar',['total' => $total]);
+        return view('merchants.agregar');
     }
 
     public function validarCodigos()
     {
-        $total = 0;
-        $coupons = Coupon::with(['details' => function($query){
-            $query->where('status', 1)->get();
-        }])->where('user_id', Auth::id())->get();
-
-        foreach ($coupons as $coupon) {
-            foreach ($coupon->details as $detail) {
-                $total += $coupon->value;
-            }
-        }
-
-        return view('merchants.validar',['total' => $total]);
+        return view('merchants.validar');
     }
 
     public function buscarCodigos()
     {
-        $total = 0;
-        $coupons = Coupon::with(['details' => function($query){
-            $query->where('status', 1)->get();
-        }])->where('user_id', Auth::id())->get();
-
-        foreach ($coupons as $coupon) {
-            foreach ($coupon->details as $detail) {
-                $total += $coupon->value;
-            }
-        }
-
         if( Input::get('cupon_id') != '' ){
-            $coupon = CouponDetail::where('id', Input::get('cupon_id'))->update([
-                'status' => 1
-            ]);
+            $coupon = CouponDetail::with('coupon')
+                ->where('id', Input::get('cupon_id'))->first();
+            // TODO actualizar los saldos de las cuentas de los usuarios involucrados
+            $coupon->update(['status' => 1]);
+            if( $coupon->coupon->currency == 2 ){
+                $user = User::find($coupon->user_id);
+                $user->mc_saldo +=  $coupon->coupon->value;
+                $user->save();
+            }
 
             return redirect()->route('negocios.index');
         }else {
@@ -119,9 +92,8 @@ class MerchantController extends Controller
             $coupon = CouponDetail::with('coupon')
                 ->where('code', $search)
                 ->first();
-
             if (isset($coupon)) {
-                return view('merchants.validar', ['cupon' => $coupon, 'total' => $total]);
+                return view('merchants.validar', ['cupon' => $coupon]);
             } else {
                 return "Codigo no Valido <a href=" . route('negocios.validar') . ">Regresar</a>";
             }
@@ -144,22 +116,15 @@ class MerchantController extends Controller
 
     public function promocionSalvar(){
         $cupon = Coupon::create(Input::all());
-        return redirect()->route('promocion.ver');
+        return redirect()->route('promocion.ver',['id' => $cupon->id]);
     }
 
     public function verPromo($coupon_id){
-        $total = 0;
-        $coupons = Coupon::with(['details' => function($query){
-            $query->where('status', 1)->get();
-        }])->where('user_id', Auth::id())->get();
-
-        foreach ($coupons as $coupon) {
-            foreach ($coupon->details as $detail) {
-                $total += $coupon->value;
-            }
-        }
         $coupon = Coupon::where('id', $coupon_id)->select('url')->first();
+        return view('merchants.promocion',['enlace' => $coupon->url]);
+    }
 
-        return view('merchants.promocion',['total' => $total, 'enlace' => $coupon->url]);
+    public function cobrar(){
+        return view('merchants.cobrar');
     }
 }

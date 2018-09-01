@@ -1,6 +1,10 @@
 $(document).ready(function () {
-    $('#value').change(function () {
-        //TODO Validar que la cantidad de cupones sea igual al total de monedas disponibles
-        console.log($(this).val());
+    $('#value').keypress(function () {
+        var saldo = $('#mc_saldo').val();
+        var monedas = $(this).val();
+
+        if( $('#currency').val() == 2 )
+            saldo + " " + monedas
+
     });
 });
