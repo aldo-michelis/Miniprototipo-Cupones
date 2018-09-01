@@ -18,12 +18,20 @@ class Coupon extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function moneda(){
-        if( $this->currency == 1 )
-            return 'CMC';
-        else if ( $this->currency == 2 )
-            return 'VP';
+    public function moneda($explain = false){
+        $ret = '';
+        if( $this->currency == 1 ) {
+            $ret .= 'CD';
 
-        return 'N/A';
+            if( $explain )
+                $ret .= ' (Cupon de Descuento)';
+        }
+        else if ( $this->currency == 2 ){
+            $ret .= 'CMC';
+
+            if( $explain )
+                $ret .= ' (Cheque de Monedas Corrientes)';
+        }
+        return $ret;
     }
 }

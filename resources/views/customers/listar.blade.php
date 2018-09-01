@@ -71,9 +71,8 @@
                     <img src="https://www.conecto.mx/file/2016/08/home.png" alt="Card image cap"
                          width="318" height="180" class="card-img-top">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $cuopon->user->name }} | {{ $cuopon->moneda() }} $ {{ $cuopon->value }}</h5>
-                        <a
-                                data-toggle="modal"
+                        <h5 class="card-title">{{ $cuopon->user->name }} | {{ $cuopon->moneda(true) }} $ {{ $cuopon->value }}</h5>
+                        <a data-toggle="modal"
                                 data-target="#descModal"
                                 class="btn btn-danger desc"
                                 data-desc="{{ $cuopon->description }}"
@@ -129,14 +128,17 @@
                     <label id="name"></label>
                 </p>
                 <p>
+                    Tipo de Promo:
+                    <label id="currency"></label></label>
+                </p>
+                <p>
                     Valor:
-                    <label id="currency"></label> $<label id="value"></label>
+                    $<label id="value"></label>
                 </p>
                 <p>
                     Descripcion:
                     <label id="desc"></label>
                 </p>
-
             </div>
             <!-- Modal footer -->
             <div class="modal-footer" id="modal-footer">

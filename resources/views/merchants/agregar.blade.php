@@ -32,7 +32,6 @@
                             <a class="dropdown-item" href="{{ route('negocios.agregar') }}">Publicar Bonos</a>
                             <a class="dropdown-item" href="{{ route('negocios.validar') }}">Valdiar Bonos</a>
                             <a class="dropdown-item" href="{{ route('preconfigurar') }}">Cupones Preconfigurados</a>
-                            <a class="dropdown-item" href="{{ route('negocios.cobrar') }}">Cobro con Monedas Circulantes</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">

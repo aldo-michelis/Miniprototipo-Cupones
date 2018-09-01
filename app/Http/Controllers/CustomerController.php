@@ -57,20 +57,34 @@ class CustomerController extends Controller
             return redirect()->route('clientes.listar');
         }else{
             $otherCheck = Coupon::find($id);
-
             if( $otherCheck->qty <= 0 )
                 return redirect()->route('clientes.listar');
+
             CouponDetail::create([
                 'coupon_id' => $id,
                 'code' => $this->getRandomCode(),
                 'status' => 0,
                 'user_id' => Auth::id()
             ]);
-            $coupon = Coupon::with(['user','details'])->where('id', $id)->first();
+
+            $coupon = Coupon::with(['details' => function($query){
+                $query->where('status', 0)->first();
+            }, 'user'])->where('id', $id)->first();
             $coupon->update([
                 'qty' => ($coupon->qty - 1)
             ]);
             return view('customers.cupon', ['coupon' => $coupon]);
         }
+    }
+
+    public function pagar(){
+        $users = User::where('user_type', 1)->get();
+        return view('customers.pagar',['users' => $users]);
+    }
+
+    public function validarPago(){
+        $monto = Input::get('monto');
+        $merchant_id = Input::get('merchant_id');
+        $user_id = auth()->id();
     }
 }

@@ -47,6 +47,8 @@ Route::prefix('clientes')->group(function (){
         Route::get('', 'CustomerController@index')->name('clientes.index');
         Route::get('listar-cupones/{coupon_id?}', 'CustomerController@listarCodigos')->name('clientes.listar');
         Route::get('cupon/{id}', 'CustomerController@cupon')->name('clientes.cupon');
+        Route::get('pagar', 'CustomerController@pagar')->name('clientes.pagar');
+        Route::post('pagar', 'CustomerController@validarPago')->name('clientes.validarpago');
     });
 });
 
@@ -64,6 +66,5 @@ Route::prefix('negocios')->group(function (){
         Route::get('preconfigurar', 'MerchantController@preconfigurar')->name('preconfigurar');
         Route::get('ver-promocion/{coupon_id}', 'MerchantController@verPromo')->name('promocion.ver');
         Route::post('salvar-promocion', 'MerchantController@promocionSalvar')->name('promocion.salvar');
-        Route::get('cobrar', 'MerchantController@cobrar')->name('negocios.cobrar');
     });
 });

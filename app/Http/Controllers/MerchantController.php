@@ -74,25 +74,30 @@ class MerchantController extends Controller
 
     public function buscarCodigos()
     {
-        if( Input::get('cupon_id') != '' ){
-            $coupon = CouponDetail::with('coupon')
-                ->where('id', Input::get('cupon_id'))->first();
+        if( Input::get('cupon_id') != '' ) {
+            $id = Auth::id();
+            $coupon = CouponDetail::with(['coupon' => function ($query) use ($id) {
+                $query->where('user_id', $id)->first();
+            }])->where('id', Input::get('cupon_id'))->first();
+
             // TODO actualizar los saldos de las cuentas de los usuarios involucrados
-            $coupon->update(['status' => 1]);
+            $coupon->status = 1;
+            $coupon->save();
+
             if( $coupon->coupon->currency == 2 ){
                 $user = User::find($coupon->user_id);
                 $user->mc_saldo +=  $coupon->coupon->value;
                 $user->save();
             }
 
-            return redirect()->route('negocios.index');
+            return view('merchants.validar');
         }else {
-
+            $id = Auth::id();
             $search = Input::get('search');
-            $coupon = CouponDetail::with('coupon')
-                ->where('code', $search)
-                ->first();
-            if (isset($coupon)) {
+            $coupon = CouponDetail::with(['coupon' => function ($query) use ($id) {
+                $query->where('user_id', $id)->first();
+            }])->where('code', $search)->first();
+            if (isset($coupon->coupon)) {
                 return view('merchants.validar', ['cupon' => $coupon]);
             } else {
                 return "Codigo no Valido <a href=" . route('negocios.validar') . ">Regresar</a>";

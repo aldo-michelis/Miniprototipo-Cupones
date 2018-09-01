@@ -1,27 +1,27 @@
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Obtener Cupon | {{ config('app.name') }}</title>
-</head>
-<body>
-<h1>Aplicación de Clientes</h1>
-<label for="">Consumos Gratuitos Totales:</label>
-<br>
-<label for="">${{ number_format(Auth::user()->totalDePromociones(), 2, '.', ',')    }}</label>
-<br>
-<br>
-<label for="">Negocio: {{ isset($coupon->user) ? $coupon->user->name : '' }}</label>
-<br>
-<label for="">Valor: ${{ number_format($coupon->value,2,'.',',') }}</label>
-<br>
-<label for="">Descripción: {{ $coupon->description }}</label>
-<br>
-<label for="">Codigo: {{ $coupon->details[0]->code }}</label>
-<br>
-<br>
-<a href="{{ route('clientes.index') }}">Seguir buscando</a>
-</body>
-</html>
+@extends('layouts.app')
+
+@section('title')
+    <title>Seleccionar Cupon | {{ config('app.name') }}</title>
+@endsection
+
+@section('content')
+<main>
+    <h1>Has obtenido el siguiente cupon</h1>
+    <div class="card col-md-4">
+        <img src="https://www.conecto.mx/file/2016/08/home.png" alt="Card image cap"
+             width="318" height="180" class="card-img-top">
+        <div class="card-body">
+            <h5 class="card-title">{{ $coupon->user->name }} | {{ $coupon->moneda() }} $ {{ $coupon->value }} | <strong>{{ $coupon->details[0]->code }}</strong></h5>
+            <p>
+                {{ $coupon->description }}
+            </p>
+        </div>
+    </div>
+</main>
+@endsection
+
+@section('scripts')
+@endsection
+
+@section('modals')
+@endsection

@@ -19,12 +19,7 @@ class CouponDetail extends Model
         return User::where('id', $coupon->user_id)->first();
     }
 
-    public function moneda(){
-        if( $this->coupon->currency == 1 )
-            return 'CMC';
-        else if ( $this->coupon->currency == 2 )
-            return 'VP';
-
-        return 'N/A';
+    public function moneda($explain = null){
+        return $this->coupon->moneda($explain);
     }
 }
