@@ -85,6 +85,14 @@ class CustomerController extends Controller
     public function validarPago(){
         $monto = Input::get('monto');
         $merchant_id = Input::get('merchant_id');
-        $user_id = auth()->id();
+        $user = auth()->user();
+
+        if( $user->mc_saldo <= 0 || $monto > $user->mc_saldo )
+            return redirect()->back()->withErrors(['error' => 'No tienes saldo suficiente']);
+
+        $user->mc_saldo -= $monto;
+        $user->save();
+
+        return redirect()->back();
     }
 }

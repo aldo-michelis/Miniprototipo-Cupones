@@ -71,14 +71,14 @@
                     <img src="https://www.conecto.mx/file/2016/08/home.png" alt="Card image cap"
                          width="318" height="180" class="card-img-top">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $cuopon->user->name }} | {{ $cuopon->moneda(true) }} $ {{ $cuopon->value }}</h5>
+                        <h5 class="card-title">{{ $cuopon->user->name }} | {{ $cuopon->moneda() }} $ {{ $cuopon->value }}</h5>
                         <a data-toggle="modal"
                                 data-target="#descModal"
                                 class="btn btn-danger desc"
                                 data-desc="{{ $cuopon->description }}"
                                 data-value="{{ $cuopon->value }}"
                                 data-name="{{ $cuopon->user->name }}"
-                                data-currency="{{ $cuopon->moneda() }}"
+                                data-currency="{{ $cuopon->moneda(true) }}"
                         >Descripción</a>
                     </div>
                 </div>

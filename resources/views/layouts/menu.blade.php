@@ -29,6 +29,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="{{ route('clientes.pagar') }}">Pagar con Monedas</a>
+                            <a class="dropdown-item" href="{{ route('clientes.listar') }}">Buscar Promociones</a>
                         </div>
                     </li>
                 @endif
