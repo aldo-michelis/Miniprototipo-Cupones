@@ -148,4 +148,12 @@ class MerchantController extends Controller
         $payments = Payment::where('merchant_id', auth()->id())->get();
         return view('merchants.cobrar',['payments' => $payments]);
     }
+
+    public function marcarCobros(){
+        $id = Input::get('id');
+        $payment = Payment::where('id', $id)->update([
+            'status' => 1
+        ]);
+        return response()->json(['status' => $payment]);
+    }
 }
