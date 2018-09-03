@@ -66,5 +66,6 @@ Route::prefix('negocios')->group(function (){
         Route::get('preconfigurar', 'MerchantController@preconfigurar')->name('preconfigurar');
         Route::get('ver-promocion/{coupon_id}', 'MerchantController@verPromo')->name('promocion.ver');
         Route::post('salvar-promocion', 'MerchantController@promocionSalvar')->name('promocion.salvar');
+        Route::get('cobrar', 'MerchantController@verCobros')->name('negocios.cobrar');
     });
 });

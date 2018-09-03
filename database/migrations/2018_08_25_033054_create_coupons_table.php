@@ -15,10 +15,10 @@ class CreateCouponsTable extends Migration
     {
         Schema::create('coupons', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('qty');
-            $table->decimal('value');
+            $table->integer('qty')->default(0);
+            $table->decimal('value')->default(0);
             $table->text('description');
-            $table->integer('user_id');
+            $table->integer('user_id')->default(1);
             $table->string('url')->default('#');
             // 1=Cupon 2=Monedas
             $table->tinyInteger('currency')->default('1');

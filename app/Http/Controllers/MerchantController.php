@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Coupon;
 use App\CouponDetail;
 use App\Merchant;
+use App\Payment;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Validator;
@@ -143,7 +144,8 @@ class MerchantController extends Controller
         return view('merchants.promocion',['enlace' => $coupon->url]);
     }
 
-    public function cobrar(){
-        return view('merchants.cobrar');
+    public function verCobros(){
+        $payments = Payment::where('merchant_id', auth()->id())->get();
+        return view('merchants.cobrar',['payments' => $payments]);
     }
 }

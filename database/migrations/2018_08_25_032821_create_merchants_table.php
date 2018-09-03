@@ -14,18 +14,11 @@ class CreateMerchantsTable extends Migration
     public function up()
     {
         Schema::create('merchants', function (Blueprint $table) {
-            /*- Nombre de la empresa
-- Nombre del contacto
-- Teléfono del contacto (username)
-- Giro
-- CP
-- Password
-- Confirmar Password*/
             $table->increments('id');
-            $table->string('contact_name');
-            $table->string('brand');
-            $table->string('postalcode');
-            $table->integer('user_id');
+            $table->string('contact_name')->default('none');
+            $table->string('brand')->default('ventas');
+            $table->string('postalcode')->default('00000');
+            $table->integer('user_id')->default(1);
             $table->timestamps();
         });
     }
