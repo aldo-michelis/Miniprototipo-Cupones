@@ -12,7 +12,7 @@
         @foreach( $cuopons as $cuopon )
             <a class="carta-promocion" href="{{ route('clientes.cupon',['id' => $cuopon->id]) }}">
                 <div class="card col-md-4">
-                    <img src="https://www.conecto.mx/file/2016/08/home.png" alt="Card image cap"
+                    <img src="{{ asset('images/la-strada.jpeg') }}" alt="Card image cap"
                          width="318" height="180" class="card-img-top">
                     <div class="card-body">
                         <h5 class="card-title">{{ $cuopon->user->name }} | {{ $cuopon->moneda() }} $ {{ $cuopon->value }}</h5>
