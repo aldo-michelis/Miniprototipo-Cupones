@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    <title>Clientes Inicio | {{ config('app.name') }}</title>
+    <title>Clientes Pagar | {{ config('app.name') }}</title>
 @endsection
 
 @section('content')

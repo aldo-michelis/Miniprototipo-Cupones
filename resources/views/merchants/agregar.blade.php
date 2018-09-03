@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    <title> Agregar Bonos | {{ config('app.name') }}</title>
+@endsection
+
 @section('content')
     <main>
         @if ($errors->any())
