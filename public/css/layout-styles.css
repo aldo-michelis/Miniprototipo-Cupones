@@ -7,7 +7,8 @@ main {
 	padding: 10px;
 	display: block;
 	clear: both;
-	
+	background-color: #EDEDED;
+
 }
 footer {
 	background-color: #c0c0c0;
@@ -18,7 +19,7 @@ footer {
 	font-size: .8em;
 }
 button {
-	background-color: #FFFFFF; 
+	background-color: #FFFFFF;
 	border: 1px solid #BAB5B5;
 	color: #454545;
 	padding: 5px 12px;
@@ -56,7 +57,7 @@ input[type=tel] {
 }
 
 .hd-logo{
-	background-color: #FFFFFF;
+	background-color: #C13048;
 	text-align: right;
 	padding-right: 20px;
 }
@@ -74,7 +75,7 @@ input[type=tel] {
 	font-weight: 900;
 }
 .extra-logo-sm {
-	color:#4d4590;
+	color:#F8F8F8;
 	font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
 	font-size: 2em;
 	font-weight: 900;
@@ -83,13 +84,13 @@ input[type=tel] {
 	color:#c13148;
 	font-family:Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";
 	font-size: 4em;
-	
+
 }
 .value-logo-sm {
-	color:#c13148;
+	color:#FFFFFF;
 	font-family:Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";
 	font-size: 2em;
-	
+
 }
 .hero {
 	text-align: center;
@@ -141,9 +142,9 @@ input[type=tel] {
 }
 
 .col-md-4{
-    width:100%;
-    float:left;
-    margin:0;
+	width:100%;
+	float:left;
+	margin:0;
 	display: inline;
 	margin-bottom: 20px;
 }
@@ -151,6 +152,7 @@ input[type=tel] {
 	display: block;
 	background-color: #FFFFFF;
 	width: 100%;
+
 }
 .registro-inic {
 	background-color: #FFFFFF;
@@ -162,17 +164,17 @@ input[type=tel] {
 	margin-bottom: 30px;
 	text-align: right;
 	font-size: .8em;
-	
+
 }
 .call-to-enter input[type=button]{
 	background-color: #D9D9D9;
-    border: none;
+	border: none;
 	border-radius: 0px;
-    color: #000000;
-    padding: 2px 32px;
-    text-decoration: none;
-    margin: 4px 2px;
-    cursor: pointer;
+	color: #000000;
+	padding: 2px 32px;
+	text-decoration: none;
+	margin: 4px 2px;
+	cursor: pointer;
 }
 .slogan{
 	position: relative;
@@ -182,13 +184,89 @@ input[type=tel] {
 	text-align: right;
 	margin-left: auto;
 	margin-right: auto;
-	
+
 }
 .search{
 	text-align: right;
 	padding-right: 20px;
 	padding-top: 20px;
 	float: right;
+}
+.form-style-negocio{
+	max-width:500px;
+	margin:50px auto;
+	background:#fff;
+	border-radius:2px;
+	padding:2px;
+	background-color: #ffffff;
+}
+.form-style-negocio-inner{
+	padding: 0px 20px 20px 20px;
+}
+.form-style-negocio h1{
+	display: block;
+	text-align: center;
+	padding: 20px 0px 20px 0px;
+	margin: 0px 0px 20px 0px;
+	color: #ffffff;
+	font-size:x-large;
+	background-color: #C13048;
+}
+.form-style-negocio h3{
+	display: block;
+	text-align: center;
+	padding: 20px 0px 20px 0px;
+	margin: 0px 0px 20px 0px;
+	color: #ffffff;
+	font-size:x-large;
+	background-color: #C13048;
+}
+
+.form-style-negocio input[type="text"],
+.form-style-negocio input[type="date"],
+.form-style-negocio input[type="datetime"],
+.form-style-negocio input[type="email"],
+.form-style-negocio input[type="number"],
+.form-style-negocio input[type="search"],
+.form-style-negocio input[type="time"],
+.form-style-negocio input[type="url"],
+.form-style-negocio input[type="password"],
+.form-style-negocio input[type="tel"],
+.form-style-negocio textarea,
+.form-style-negocio select
+{
+	width: 100%;
+	display: block;
+	border:1px solid #C0C0C0;
+	height: 25px;
+	font-size: 16px;
+	padding: 0;
+}
+
+.form-style-negocio textarea{
+	resize:none;
+}
+.form-style-negocio input[type="submit"],
+.form-style-negocio button,
+.form-style-negocio input[type="button"],
+.form-style-negocio a.btn-gina{
+	display: block;
+	background: #C0C0C0;
+	border: none;
+	padding: 10px 20px 10px 20px;
+	border-radius: 3px;
+	color: #2C2C2C;
+	text-align: center;
+	margin: 0 auto;
+	font-weight: 600;
+}
+.form-style-negocio input[type="submit"]:hover,
+.form-style-negocio button:hover,
+.form-style-negocio input[type="button"]:hover,
+.form-style-negocio a.btn-gina:hover{
+	background: #4D4590;
+	color:#fff;
+	text-decoration: none;
 }
 
 a.carta-promocion{
