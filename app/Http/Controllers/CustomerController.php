@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CouponDetail;
+use App\Payment;
 use App\User;
 use App\Coupon;
 use Illuminate\Support\Facades\Auth;
@@ -92,6 +93,12 @@ class CustomerController extends Controller
 
         $user->mc_saldo -= $monto;
         $user->save();
+
+        $pago = Payment::create([
+            'customer_id' => auth()->id(),
+            'merchant_id' => $merchant_id,
+            'amount' => $monto
+        ]);
 
         return redirect()->back();
     }
