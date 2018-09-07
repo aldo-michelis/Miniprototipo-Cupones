@@ -33,6 +33,11 @@ Route::get('/new', function(){
     return "Usuarios Creados";
 });
 
+Route::get('code', function ()
+{
+    return QrCode::size(200)->margin(10)->generate('https://m.facebook.com');
+});
+
 Auth::routes();
 
 Route::get('', 'HomeController@index')->name('');

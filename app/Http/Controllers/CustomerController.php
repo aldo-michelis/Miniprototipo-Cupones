@@ -17,8 +17,8 @@ class CustomerController extends Controller
 
         $slots = Slot::with(['user', 'merchant', 'detail' => function($query){
             $query->with(['coupon' => function($query){
-                $query->with('user')->first();
-            }])->first();
+                $query->with('user')->get();
+            }])->get();
         }])->where('user_id', auth()->id())->get();
         return view('customers.index', ['slots' => $slots]);
     }
@@ -32,20 +32,32 @@ class CustomerController extends Controller
         # Se crea el usuario
         $user = User::create(Input::all());
 
+        if( Input::has('coupon_id') ){
+            $coupon = Coupon::find(Input::get('coupon_id'));
+
+            # Se asigna un slot con el usuario 1
+            $slot = Slot::create([
+                'user_id' => $user->id,
+                'merchant_id' => 1,
+                'coupon_id' => $coupon->id,
+                'cad' => date('Y-m-d', strtotime(now()->addYear(1))),
+                'status' => 0
+            ]);
+
+            return redirect('clientes/listar-cupones/' . $coupon->id);
+        }
+
         # Se asigna un slot con el usuario 1
         $slot = Slot::create([
-                    'user_id' => $user->id,
-                    'merchant_id' => 1,
-                    'coupon_id' => 0,
-                    'cad' => date('Y-m-d', strtotime(now()->addYear(1))),
-                    'status' => 0
-                ]);
+            'user_id' => $user->id,
+            'merchant_id' => 1,
+            'coupon_id' => 0,
+            'cad' => date('Y-m-d', strtotime(now()->addYear(1))),
+            'status' => 0
+        ]);
 
         # Se inicia sesión
         Auth::guard()->login($user);
-        if( Input::has('coupon_id') ){
-            return redirect('clientes/listar-cupones/' . Input::get('coupon_id'));
-        }
 
         session([
             'messages' => [
@@ -69,17 +81,18 @@ class CustomerController extends Controller
 
             return view('customers.listar', ['cuopons' => $cuopons]);
         }
-
-        return redirect()->back()->withErrors(['error' => 'Ya no tienes slots libres, por favor, canjea tus cupones o adquiere más slots']);
+        return redirect('clientes')->withErrors(['error' => 'Ya no tienes slots libres, por favor, canjea tus cupones o adquiere más slots']);
     }
 
     public function cupon($id){
         if( !Auth::user()->tieneSlotsLibres() ){
             return redirect()->route('clientes.listar')->withErrors(['error' => 'Ya no tienes slots libres, por favor, canjea tus cupones o adquiere más slots']);
         }else{
-            $coupon = Coupon::with(['details' => function($query){
-                $query->where('status', 0)->first();
+            $user_id = auth()->id();
+            $coupon = Coupon::with(['details' => function($query) use ( $user_id ){
+                $query->where('status', 0)->where('user_id', $user_id)->get();
             }, 'user'])->where('id', $id)->first();
+
 
             if( $coupon->qty <= 0 )
                 return redirect()->route('clientes.listar')->withErrors(['error' => 'Ya cuentas con un cupon']);
@@ -134,6 +147,21 @@ class CustomerController extends Controller
     }
 
     public function adquirirSlot(){
+        Slot::create([
+            'user_id' => auth()->id(),
+            'merchant_id' => 1,
+            'coupon_id' => 0,
+            'cad' => date('Y-m-d', strtotime(now()->addYear(1))),
+            'status' => 0
+        ]);
 
+        session([
+            'messages' => [
+                ['text' => 'Felicidades has recibido un Slot de cupones valido por un año.',
+                    'type' => 'success']
+            ]
+        ]);
+
+        return redirect()->route('clientes.index');
     }
 }

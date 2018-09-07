@@ -14,9 +14,13 @@
     @endif
     <section class="destacados">
         @if ( isset($slots) )
-            @include('customers.slots')
+            @include('customers.cupones')
         @endif
     </section>
+
+    @if( !auth()->user()->tieneSlots() )
+        <h4>No tienes slots para reclamar cupones, adquiere uno o busca quien esta regalando slots</h4>
+    @endif
 </main>
 @endsection
 

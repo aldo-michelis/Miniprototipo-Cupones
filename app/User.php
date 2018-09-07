@@ -35,6 +35,10 @@ class User extends Authenticatable
         return null;
     }
 
+    public function coupon(){
+        $this->hasMany('App\Coupon');
+    }
+
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);

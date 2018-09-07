@@ -23,7 +23,7 @@
                         </a>
                         <p class="card-text">{{ $cuopon->description }}</p>
                         <p class="card-text" align="right">
-                            <a href={{ route('clientes.cupon',['id' => $cuopon->id]) }}"">
+                            <a href="{{ route('clientes.cupon',['id' => $cuopon->id]) }}">
                                 Ve detalles y aplica tu cupón &rsaquo;
                             </a>
                         </p>
