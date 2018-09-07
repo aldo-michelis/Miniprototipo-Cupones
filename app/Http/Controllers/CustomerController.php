@@ -133,7 +133,7 @@ class CustomerController extends Controller
         return redirect()->back();
     }
 
-    public function dquirirSlot(){
+    public function adquirirSlot(){
 
     }
 }

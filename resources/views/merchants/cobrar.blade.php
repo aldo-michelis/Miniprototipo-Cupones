@@ -6,10 +6,6 @@
 
 @section('content')
     <main>
-        <h3>Pagos Realizados</h3>
-
-    </main>
-    <main>
         <div class="form-style-negocio">
             <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
             <h3>Pagos Realizados</h3>
@@ -35,8 +31,7 @@
                     </tbody>
                 </table>
             </div>
-
-
+        </div>
     </main>
 @endsection
 

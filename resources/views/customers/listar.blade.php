@@ -10,23 +10,26 @@
         <h1>Promociones destacadas</h1>
 
         @foreach( $cuopons as $cuopon )
-            <a class="carta-promocion" href="{{ route('clientes.cupon',['id' => $cuopon->id]) }}">
+            <div class="card-group">
                 <div class="card col-md-4">
-                    <img src="{{ asset($cuopon->user->merchantImage()) }}" alt="Card image cap"
-                         width="318" height="180" class="card-img-top">
+                    <a href="#"><img src="{{ asset('images/default.jpeg') }}" class="card-img-top" alt="imagen papeleria"></a>
                     <div class="card-body">
-                        <h5 class="card-title">{{ $cuopon->user->name }} | {{ $cuopon->moneda() }} $ {{ $cuopon->value }}</h5>
-                        <a data-toggle="modal"
-                                data-target="#descModal"
-                                class="btn btn-danger desc"
-                                data-desc="{{ $cuopon->description }}"
-                                data-value="{{ $cuopon->value }}"
-                                data-name="{{ $cuopon->user->name }}"
-                                data-currency="{{ $cuopon->moneda(true) }}"
-                        >Descripción</a>
+                        <a href="#">
+                            <h5 class="card-title">
+                                {{ $cuopon->user->name }} |
+                                {{ $cuopon->moneda() }}
+                                ${{ $cuopon->value }}
+                            </h5>
+                        </a>
+                        <p class="card-text">{{ $cuopon->description }}</p>
+                        <p class="card-text" align="right">
+                            <a href={{ route('clientes.cupon',['id' => $cuopon->id]) }}"">
+                                Ve detalles y aplica tu cupón &rsaquo;
+                            </a>
+                        </p>
                     </div>
                 </div>
-            </a>
+            </div>
         @endforeach
     </section>
 </main>
