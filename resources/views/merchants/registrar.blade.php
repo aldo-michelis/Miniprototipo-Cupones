@@ -66,7 +66,7 @@
 <main>
     <h1>Registro de empresa</h1>
     <section class="reg-cliente">
-        <form action="{{ route('negocios.registrar') }}" method="POST">
+        <form action="{{ route('negocios.registrar') }}" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
             <input type="hidden" name="user_type" id="user_type" value="1">
             <div>
@@ -97,7 +97,13 @@
                 <label for="">Confimar Contraseña</label>
                 <input type="password" name="password_confirm" id="password_confirm">
             </div>
-            <input type="submit" value="Registrar Negocio">
+            <div>
+                <label for="">Logo</label>
+                <input type="file" name="logo" id="logo">
+            </div>
+            <div>
+                <input type="submit" value="Registrar Negocio">
+            </div>
         </form>
     </section>
     <p>&nbsp;</p></main>

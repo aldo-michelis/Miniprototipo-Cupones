@@ -10,6 +10,7 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Storage;
 
 class MerchantController extends Controller
 {
@@ -34,7 +35,11 @@ class MerchantController extends Controller
     public function salvarRegistro(){
         $data = Input::all();
         $user = User::create($data);
-        $data = array_merge($data,['user_id' => $user->id]);
+        if( Input::hasFile('logo') ){
+            $file = Input::file('logo');
+            $image = Storage::put('images', $file, 'public');
+        }
+        $data = array_merge($data,['user_id' => $user->id, 'logo' => $image]);
         Merchant::create($data);
         Auth::guard()->login($user);
         return redirect()->route('login');

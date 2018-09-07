@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMerchantsTable extends Migration
+class CreateSlotsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateMerchantsTable extends Migration
      */
     public function up()
     {
-        Schema::create('merchants', function (Blueprint $table) {
+        Schema::create('slots', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('logo');
-            $table->string('contact_name')->default('none');
-            $table->string('brand')->default('ventas');
-            $table->string('postalcode')->default('00000');
-            $table->integer('user_id')->default(1);
+            $table->integer('user_id');
+            $table->integer('merchant_id');
+            $table->integer('coupon_id');
+            $table->date('cad');
+            $table->boolean('status');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateMerchantsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('merchants');
+        Schema::dropIfExists('slots');
     }
 }

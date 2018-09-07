@@ -22,4 +22,8 @@ class CouponDetail extends Model
     public function moneda($explain = null){
         return $this->coupon->moneda($explain);
     }
+
+    public function slot(){
+        return $this->belongsTo('App\Slot', 'coupon_id', 'id');
+    }
 }

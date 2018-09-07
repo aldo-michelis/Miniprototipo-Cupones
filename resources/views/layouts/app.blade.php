@@ -24,8 +24,10 @@
 
 </header>
 
-@yield('content')
+    @include('layouts.errors')
+    @include('layouts.messages')
 
+@yield('content')
 
 <footer>
     <div class="pie">

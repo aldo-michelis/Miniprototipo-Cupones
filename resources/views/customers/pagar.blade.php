@@ -6,15 +6,6 @@
 
 @section('content')
     <main>
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
         <form method="post" action="{{ route('clientes.validarpago') }}" class="form-control" id="validar-pago">
             {{ csrf_field() }}
             <div class="row">

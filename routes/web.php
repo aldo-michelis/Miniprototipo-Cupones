@@ -16,17 +16,17 @@ Route::get('/new', function(){
 
     $user = App\User::create([
         'username' => '3319900075',
-        'name' => 'Emmanuel Frias',
+        'name' => 'Administrador General',
         'password' => '12345',
-        'mc_saldo' => 100000,
+        'mc_saldo' => 1000,
         'user_type' => '1'
     ]);
 
     $user = App\User::create([
         'username' => '3314731668',
-        'name' => 'Pinshi Lupe',
+        'name' => 'Cliente de Ejemplo',
         'password' => '12345',
-        'mc_saldo' => 100000,
+        'mc_saldo' => 0,
         'user_type' => '2'
     ]);
 
@@ -49,6 +49,7 @@ Route::prefix('clientes')->group(function (){
         Route::get('cupon/{id}', 'CustomerController@cupon')->name('clientes.cupon');
         Route::get('pagar', 'CustomerController@pagar')->name('clientes.pagar');
         Route::post('pagar', 'CustomerController@validarPago')->name('clientes.validarpago');
+        Route::get('adquirir', 'CustomerController@adquirirSlot')->name('clientes.adquirirslot');
     });
 });
 

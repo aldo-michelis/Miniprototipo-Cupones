@@ -61,4 +61,23 @@ class User extends Authenticatable
 
         return $total;
     }
+
+    public function merchantImage(){
+        if( $this->user_type == 1 ) {
+            $merchant = $this->merchant;
+            return $merchant;
+        }else {
+            return 'images/default.jpeg';
+        }
+    }
+
+    public function tieneSlotsLibres(){
+        $slots = Slot::where('coupon_id', 0)->where('user_id', auth()->id())->get();
+        return (count($slots) > 0);
+    }
+
+    public function tieneSlots(){
+        $slots = Slot::where('user_id', auth()->id())->get();
+        return (count($slots) > 0);
+    }
 }
