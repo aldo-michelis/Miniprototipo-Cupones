@@ -19,7 +19,7 @@ class CustomerController extends Controller
         $slots = Slot::with(['user', 'merchant', 'detail' => function($query){
             $query->with(['coupon' => function($query){
                 $query->with('user')->get();
-            }])->get();
+            }])->where('status', 0)->get();
         }])->where('user_id', auth()->id())->get();
         return view('customers.index', ['slots' => $slots]);
     }
@@ -90,10 +90,7 @@ class CustomerController extends Controller
             return redirect()->route('clientes.listar')->withErrors(['error' => 'Ya no tienes slots libres, por favor, canjea tus cupones o adquiere más slots']);
         }else{
             $user_id = auth()->id();
-            $coupon = Coupon::with(['details' => function($query) use ( $user_id ){
-                $query->where('status', 0)->where('user_id', $user_id)->get();
-            }, 'user'])->where('id', $id)->first();
-
+            $coupon = Coupon::where('id', $id)->first();
 
             if( $coupon->qty <= 0 )
                 return redirect()->route('clientes.listar')->withErrors(['error' => 'Ya cuentas con un cupon']);
@@ -117,6 +114,11 @@ class CustomerController extends Controller
             $coupon->update([
                 'qty' => ($coupon->qty - 1)
             ]);
+            $code = $detail->code;
+
+            $coupon = Coupon::with(['details' => function($query) use ( $user_id, $code ){
+                $query->where('code', $code)->get();
+            }, 'user'])->where('id', $id)->first();
 
             return view('customers.cupon', ['coupon' => $coupon]);
         }

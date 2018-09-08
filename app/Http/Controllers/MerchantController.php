@@ -8,6 +8,7 @@ use App\Dispenser;
 use App\Merchant;
 use App\Payment;
 use App\User;
+use App\Slot;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use Illuminate\Support\Facades\Input;
@@ -105,11 +106,20 @@ class MerchantController extends Controller
             $coupon->status = 1;
             $coupon->save();
 
+            $user = User::find($coupon->user_id);
+
             if( $coupon->coupon->currency == 2 ){
-                $user = User::find($coupon->user_id);
                 $user->mc_saldo +=  $coupon->coupon->value;
                 $user->save();
             }
+
+            $slot = Slot::where('user_id', $user->id)
+                ->where('coupon_id', $coupon->id)
+                ->first();
+
+            $slot->update([
+                'coupon_id' => 0
+            ]);
 
             return view('merchants.validar');
         }else {

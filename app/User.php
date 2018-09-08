@@ -73,6 +73,21 @@ class User extends Authenticatable
         return $total;
     }
 
+    public function totalDeCompraVentas(){
+            if ($this->user_type == 2)
+                $total = Coupon::join('coupon_details', 'coupons.id', 'coupon_details.coupon_id')
+                                ->where('coupon_details.status', 1)
+                                ->where('coupon_details.user_id', $this->id)
+                                ->select('value')->sum('value');
+            else
+                $total = Coupon::join('coupon_details', 'coupons.id', 'coupon_details.coupon_id')
+                    ->where('coupons.user_id', $this->id)
+                    ->where('coupon_details.status', 1)
+                    ->select('value')->sum('value');
+
+            return $total;
+        }
+
     public function merchantImage(){
         if( $this->user_type == 1 ) {
             $merchant = $this->merchant;
