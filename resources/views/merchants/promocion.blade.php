@@ -12,5 +12,7 @@
             http://cupones.com/promocion/{{ $enlace }}
         </a>
     </strong>
+    <br>
+    {!! QrCode::size(200)->margin(3)->generate('http://cupones.com/promocion/'.$enlace) !!}
 </main>
 @endsection

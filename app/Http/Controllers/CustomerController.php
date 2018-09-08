@@ -143,7 +143,8 @@ class CustomerController extends Controller
         $pago = Payment::create([
             'customer_id' => auth()->id(),
             'merchant_id' => $merchant_id,
-            'amount' => $monto
+            'amount' => $monto,
+            'status' => 0
         ]);
 
         return redirect()->back();
