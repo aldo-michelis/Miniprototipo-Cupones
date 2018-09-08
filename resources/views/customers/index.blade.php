@@ -19,7 +19,7 @@
     </section>
 
     @if( !auth()->user()->tieneSlots() )
-        <h4>No tienes slots para reclamar cupones, adquiere uno o busca quien esta regalando slots</h4>
+        <h4>No tienes slots para reclamar cupones, adquiere uno o busca quien esta <a href="{{ route('clientes.adquirirslot') }}">regalando slots</a></h4>
     @endif
 </main>
 @endsection

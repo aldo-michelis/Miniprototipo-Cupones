@@ -20,6 +20,7 @@
                             <a class="dropdown-item" href="{{ route('negocios.validar') }}">Valdiar Bonos</a>
                             <a class="dropdown-item" href="{{ route('preconfigurar') }}">Cupones Preconfigurados</a>
                             <a class="dropdown-item" href="{{ route('negocios.cobrar') }}">Pagos con Monedas</a>
+                            <a class="dropdown-item" href="{{ route('negocios.publicar') }}">Publicar Slots</a>
                         </div>
                     </li>
                 @else

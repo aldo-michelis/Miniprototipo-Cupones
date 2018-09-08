@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CouponDetail;
+use App\Dispenser;
 use App\Payment;
 use App\Slot;
 use App\User;
@@ -147,21 +148,25 @@ class CustomerController extends Controller
     }
 
     public function adquirirSlot(){
+        $available = Dispenser::with('user')->get();
+        $now = now();
+        return view('customers.slots', ['slots' => $available, 'now' => $now]);
+    }
+
+    public function salvarSlot($id){
+        $disp = Dispenser::find($id);
+
+        $disp->update([
+            'qty' => $disp->qty - 1
+        ]);
+
         Slot::create([
             'user_id' => auth()->id(),
-            'merchant_id' => 1,
+            'merchant_id' => $disp->user->id,
             'coupon_id' => 0,
-            'cad' => date('Y-m-d', strtotime(now()->addYear(1))),
+            'cad' => date('Y-m-d', strtotime('+1 ' . $disp->cad)),
             'status' => 0
         ]);
-
-        session([
-            'messages' => [
-                ['text' => 'Felicidades has recibido un Slot de cupones valido por un año.',
-                    'type' => 'success']
-            ]
-        ]);
-
         return redirect()->route('clientes.index');
     }
 }

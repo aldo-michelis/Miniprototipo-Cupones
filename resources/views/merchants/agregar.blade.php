@@ -23,6 +23,7 @@
                                 <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                                 <div class="form-style-negocio-inner">
                                     @endif
+                                    <input type="hidden" name="mc_saldo" id="mc_saldo" value="{{ Auth::user()->mc_saldo }}">
                                     {{ csrf_field() }}
                                     <label for="">Tipo de Moneda</label>
                                     <br>

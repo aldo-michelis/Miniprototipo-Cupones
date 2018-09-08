@@ -12,7 +12,7 @@
             <img src="{{ asset('images/la-strada.jpeg') }}" alt="Card image cap"
                  width="318" height="180" class="card-img-top">
             <div class="card-body">
-                <h5 class="card-title">{{ $coupon->user->name }} | {{ $coupon->moneda() }} $ {{ $coupon->value }} | <strong>{{ $coupon->details[0]->code }}</strong></h5>
+                <h5 class="card-title">{{ $coupon->user->name }} | {{ $coupon->moneda() }} $ {{ $coupon->value }} | <strong>{{ $coupon->details->code }}</strong></h5>
                 <p>
                     {{ $coupon->description }}
                 </p>

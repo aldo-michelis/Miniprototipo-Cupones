@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Coupon;
 use App\CouponDetail;
+use App\Dispenser;
 use App\Merchant;
 use App\Payment;
 use App\User;
@@ -67,7 +68,7 @@ class MerchantController extends Controller
             $qty = $data['qty'];
             $saldo = $data['mc_saldo'];
 
-            if( ($monto * $qty) >= $saldo ) {
+            if( ($monto * $qty) > $saldo ) {
                 return redirect('negocios/agregar-codigos')
                         ->withErrors(['error' => 'No tiene saldo para esta cantidad de cupones'])
                         ->withInput();
@@ -160,5 +161,40 @@ class MerchantController extends Controller
             'status' => 1
         ]);
         return response()->json(['status' => $payment]);
+    }
+
+    public function publicarSlots(){
+        return view('merchants.publicar');
+    }
+
+    public function guardarSlots()
+    {
+        $data = Input::all();
+
+        $validator = Validator::make($data, [
+            'qty' => 'required|numeric|min:1',
+            'cad' => 'required'
+        ], [
+            'qty.numeric' => 'La cantidad debe de ser un numero',
+            'qty.required' => 'La cantidad es un valor requerido',
+            'qty.min' => 'La cantidad debe de ser minimo 1 Slot',
+            'cad.required' => 'La canducidad debe de ser especificada',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('negocios/publicar-slots')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        Dispenser::create($data);
+        session([
+            'messages' => [
+                ['text' => 'Se ha publicado el nuevo sloth con exito',
+                    'type' => 'success']
+            ]
+        ]);
+
+        return redirect('negocios/publicar-slots');
+
     }
 }

@@ -42,6 +42,7 @@ Auth::routes();
 
 Route::get('', 'HomeController@index')->name('');
 Route::get('promocion/{url}', 'HomeController@promocionUrl')->name('promocion');
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 // Rutas del Cliente
 Route::prefix('clientes')->group(function (){
@@ -55,6 +56,7 @@ Route::prefix('clientes')->group(function (){
         Route::get('pagar', 'CustomerController@pagar')->name('clientes.pagar');
         Route::post('pagar', 'CustomerController@validarPago')->name('clientes.validarpago');
         Route::get('adquirir', 'CustomerController@adquirirSlot')->name('clientes.adquirirslot');
+        Route::get('adquirir-slot/{id}', 'CustomerController@salvarSlot')->name('clientes.salvar');
     });
 });
 
@@ -74,5 +76,7 @@ Route::prefix('negocios')->group(function (){
         Route::post('salvar-promocion', 'MerchantController@promocionSalvar')->name('promocion.salvar');
         Route::get('cobrar', 'MerchantController@verCobros')->name('negocios.cobrar');
         Route::post('cobrar-marcar', 'MerchantController@marcarCobros')->name('negocios.marcar');
+        Route::get('publicar-slots', 'MerchantController@publicarSlots')->name('negocios.publicar');
+        Route::post('publicar-slots', 'MerchantController@guardarSlots')->name('negocios.guardar');
     });
 });

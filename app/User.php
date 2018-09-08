@@ -36,7 +36,14 @@ class User extends Authenticatable
     }
 
     public function coupon(){
-        $this->hasMany('App\Coupon');
+        return $this->hasMany('App\Coupon');
+    }
+
+    public function dispenser(){
+        if( $this->user_type == 1 )
+            return $this->hasMany('App\Dispenser');
+
+        return null;
     }
 
     public function setPasswordAttribute($value)
