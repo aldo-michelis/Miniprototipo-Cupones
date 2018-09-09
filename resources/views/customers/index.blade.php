@@ -4,6 +4,10 @@
     <title>Clientes Inicio | {{ config('app.name') }}</title>
 @endsection
 
+@section('css')
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/src/sweetalert2.css') }}">
+@endsection
+
 @section('content')
 <main>
     <h1>Cupones Activos</h1>
@@ -25,6 +29,8 @@
 @endsection
 
 @section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.28/dist/sweetalert2.all.min.js"></script>
+    <script src="{{ asset('js/pages/customers.js') }}"></script>
 @endsection
 
 @section('modals')

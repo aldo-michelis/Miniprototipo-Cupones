@@ -29,7 +29,25 @@ class CustomerController extends Controller
     }
 
     public function salvarRegistro(){
-        // TODO, agregar validaciones para contraseñas iguales y username repetidos
+        $data = Input::all();
+
+        $validator = Validator::make($data, [
+            'username' => 'required|email|unique:users,username',
+            'password' => 'required|same:password_confirm',
+        ],[
+            'username.required' => 'El correo debe de estar presente.',
+            'username.email'    => 'Por favor inserte un correo valido.',
+            'username.unique'   => 'El correo :attibute ya esta registrado.',
+            'password.required' => 'El password debe de estar presente.',
+            'username.same'     => 'Los passwords deben de ser iguales.',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('clientes/registrar')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         # Se crea el usuario
         $user = User::create(Input::all());
 

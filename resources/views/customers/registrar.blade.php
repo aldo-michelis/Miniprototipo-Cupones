@@ -66,12 +66,8 @@
                 <input type="hidden" id="coupon_id" name="coupon_id" value="{{ $coupon->id }}">
             @endif
             <div>
-                <label for="name">Nombre Completo</label>
-                <input type="text" name="name" id="name" required>
-            </div>
-            <div>
-                <label for="username">Numero Celular</label>
-                <input type="tel" name="username" id="usernae" required>
+                <label for="username">Correo</label>
+                <input type="email" name="username" id="username" required>
             </div>
             <div>
                 <label for="password">Contraseña</label>

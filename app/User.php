@@ -51,6 +51,10 @@ class User extends Authenticatable
         $this->attributes['password'] = bcrypt($value);
     }
 
+    public function unico(){
+
+    }
+
     public function tieneCuponesActivos(){
         $cpns = CouponDetail::where('user_id', $this->id)->where('status', 0)->get();
         return (count($cpns) == 0);
