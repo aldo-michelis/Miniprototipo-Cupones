@@ -8,9 +8,9 @@ use App\Payment;
 use App\Slot;
 use App\User;
 use App\Coupon;
-use function foo\func;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Validator;
 
 class CustomerController extends Controller
 {
@@ -37,9 +37,9 @@ class CustomerController extends Controller
         ],[
             'username.required' => 'El correo debe de estar presente.',
             'username.email'    => 'Por favor inserte un correo valido.',
-            'username.unique'   => 'El correo :attibute ya esta registrado.',
+            'username.unique'   => 'El correo :input ya esta registrado.',
             'password.required' => 'El password debe de estar presente.',
-            'username.same'     => 'Los passwords deben de ser iguales.',
+            'password.same'     => 'El password y la confirmacion de password deben de ser iguales.',
         ]);
 
         if ($validator->fails()) {

@@ -1,0 +1,334 @@
+@charset "UTF-8";
+body {
+	background-color: #EDEDED;
+	
+}
+header {
+	background-color: #5970b6;
+	width: 100%;
+}
+main {
+	padding: 10px 25px 10px 25px;
+	display: block;
+	clear: both;
+	background-color: #ffffff;
+	
+}
+footer {
+	background-color: #c0c0c0;
+	width: 100%;
+	padding: 10px;
+	display: block;
+	clear: both;
+	font-size: .8em;
+}
+.busca-gen button {
+	background-color: #324274; 
+	border: 1px hidden;
+	color: #ffffff;
+	padding: 5px 12px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 14px;
+	box-shadow:2px 2px 2px #111111;
+	border-radius: 0px 0px 0px 10px;
+}
+
+h1 {
+	color: #324274;
+	font-size: 1.5em;
+	font-weight: 600;
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+
+input[type=text] {
+	padding: 3px 4px;
+	margin: 8px 0;
+	box-sizing: border-box;
+	border: 1px solid #A6A6A6;
+}
+input[type=password] {
+	padding: 3px 4px;
+	margin: 8px 0;
+	box-sizing: border-box;
+	border: 1px solid #A6A6A6;
+}
+input[type=tel] {
+	padding: 3px 4px;
+	margin: 8px 0;
+	box-sizing: border-box;
+	border: 1px solid #A6A6A6;
+}
+
+a:link{
+	color: #5970b6;
+	text-decoration: underline;
+}
+a:visited{
+	color: #5970b6;
+}
+a:hover {
+	color: #625858;
+	text-decoration: none;	
+}
+
+th, td {
+	vertical-align: top;
+	border-bottom: 1px solid #ddd;
+	padding: 3px;
+}
+tr:hover {
+	background-color: #f5f5f5;
+}
+th {
+	background-color: #252525;
+	color: #fff;
+}
+
+.hd-logo{
+	background-color: #5970b6;
+	text-align: right;
+	padding-right: 20px;
+}
+.edoCuenta{
+	display: flex;
+	flex-direction: row;
+	background-color: #DEDEDE;
+	font-size: 1.1em;
+	font-weight: 300;
+	padding: 10px;
+}
+.edoCuenta div {
+	width: 33%;
+	border-radius: 0px 0px 0px 6px;
+	box-shadow:2px 2px 2px grey;
+	margin: 0px 4px 0px 4px;
+	padding: 2px;
+	background-color: #324273;
+	color: #ffffff;
+}
+.RB{
+	display: block;
+	background-color: #DEDEDE;
+	font-size: 1.1em;
+	font-weight: 600;
+	padding: 10px;
+}
+.RB div {
+	border-style: solid;
+	border-width: 1px;
+	border-color: #858585;
+	border-radius: 0px 0px 0px 6px;
+	margin: 0px 4px 0px 4px;
+	padding: 2px;
+	background-color: #ffffff;
+	box-shadow:2px 2px 2px grey;
+}
+.RB p {
+	padding: 10px;
+	font-weight: 500;
+}
+.extra-logo {
+	color:#4d4590;
+	font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	font-size: 4em;
+	font-weight: 900;
+}
+.extra-logo-sm {
+	color:#F8F8F8;
+	font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	font-size: 2em;
+	font-weight: 900;
+}
+.value-logo {
+	color:#c13148;
+	font-family:Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";
+	font-size: 4em;
+	
+}
+.value-logo-sm {
+	color:#FFFFFF;
+	font-family:Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";
+	font-size: 2em;
+	
+}
+.hero {
+	text-align: center;
+	padding-bottom: 3px;
+}
+.pie {
+	width: 50%;
+	float: left;
+}
+.legales {
+	clear: both;
+	display: block;
+}
+.acceder {
+	background-color: #5970b6;
+	color: #FFFFFF;
+	width: 100%;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	text-align: center;
+}
+.acceder input[type=text] {
+	width: 160px;
+}
+.acceder input[type=password] {
+	width: 160px;
+}
+.acceder button {
+	width: 100px;
+	background-color: #4D4590;
+	color: #FFFFFF
+}
+.reg-cliente{
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+.reg-cliente label {
+	display:block;
+}
+.reg-cliente input {
+	width: 300px;
+}
+.reg-cliente input[type=submit] {
+	background-color: #4D4590;
+	color: #FFFFFF
+}
+
+.col-md-4{
+    width:100%;
+    float:left;
+    margin:0;
+	display: inline;
+	margin-bottom: 20px;
+}
+.destacados {
+	display: block;
+	width: 100%;
+	
+}
+
+.registro-inic {
+	background-color: #FFFFFF;
+	display: block;
+}
+.call-to-enter {
+	width: 100%;
+	margin-bottom: 10px;
+	text-align: right;
+	font-size: .8em;
+	
+}
+.call-to-enter input[type=button]{
+	background-color: #D9D9D9;
+    border: none;
+	border-radius: 0px;
+    color: #000000;
+    padding: 2px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.slogan{
+	position: relative;
+	bottom: 20px;
+	font-weight: 700;
+	width: 340px;
+	text-align: right;
+	margin-left: auto;
+	margin-right: auto;
+	
+}
+.search{
+	text-align: right;
+	padding-right: 20px;
+	padding-top: 20px;
+	float: right;
+}
+.form-style-negocio{
+    max-width:500px;
+    margin:50px auto;
+    background:#fff;
+    border-radius:2px;
+    padding:2px;
+	background-color: #ffffff;
+}
+.form-style-negocio-inner{
+    padding: 0px 20px 20px 20px;
+}
+.form-style-negocio h1{
+    display: block;
+    text-align: center;
+    padding: 20px 0px 20px 0px;
+    margin: 0px 0px 20px 0px;
+    color: #ffffff;
+    font-size:x-large;
+	background-color: #5970b6;
+}
+.form-style-negocio h3{
+    display: block;
+    text-align: center;
+    padding: 20px 0px 20px 0px;
+    margin: 0px 0px 20px 0px;
+    color: #ffffff;
+    font-size:x-large;
+	background-color: #5970b6;
+}
+
+.form-style-negocio input[type="text"],
+.form-style-negocio input[type="date"],
+.form-style-negocio input[type="datetime"],
+.form-style-negocio input[type="email"],
+.form-style-negocio input[type="number"],
+.form-style-negocio input[type="search"],
+.form-style-negocio input[type="time"],
+.form-style-negocio input[type="url"],
+.form-style-negocio input[type="password"],
+.form-style-negocio input[type="tel"],
+.form-style-negocio textarea,
+.form-style-negocio select 
+{
+    width: 100%;
+    display: block;
+    border:1px solid #C0C0C0;
+    height: 25px;
+    font-size: 16px;
+    padding: 0;
+}
+
+.form-style-negocio textarea{
+    resize:none;
+}
+.form-style-negocio input[type="submit"],
+.form-style-negocio button,
+.form-style-negocio input[type="button"]{
+    display: block;
+	background: #C0C0C0;
+    border: none;
+    padding: 10px 20px 10px 20px;
+    border-radius: 3px;
+    color: #2C2C2C;
+	text-align: center;
+    margin: 0 auto;
+	font-weight: 600;
+}
+.form-style-negocio input[type="submit"]:hover,
+.form-style-negocio button:hover,
+.form-style-negocio input[type="button"]:hover{
+    background: #4D4590;
+    color:#fff;
+}
+.card-text {
+	font-size: .9em;
+}
+.espaciado {
+	padding: 0px 6px 0px 6px;
+}

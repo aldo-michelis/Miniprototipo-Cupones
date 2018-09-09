@@ -57,6 +57,7 @@
 <!-- end of header -->
 
 <main>
+    @include('layouts.errors')
     <h1>Registro de cliente</h1>
     <section class="reg-cliente">
         <form action="{{ route('clientes.registrar') }}" method="post">
