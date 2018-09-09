@@ -171,7 +171,7 @@ class CustomerController extends Controller
     public function adquirirSlot(){
         $available = Dispenser::with('user')->get();
         $now = now();
-        return view('customers.slots', ['slots' => $available, 'now' => $now]);
+        return view('customers.slots', ['receptores' => $available, 'now' => $now]);
     }
 
     public function salvarSlot($id){

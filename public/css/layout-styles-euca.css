@@ -121,10 +121,15 @@ th {
 	border-width: 1px;
 	border-color: #858585;
 	border-radius: 0px 0px 0px 6px;
-	margin: 0px 4px 0px 4px;
+	margin: 10px 4px 0px 4px;
 	padding: 2px;
 	background-color: #ffffff;
 	box-shadow:2px 2px 2px grey;
+}
+
+.RB div:hover {
+	background-color: #5970b6;
+	color: #ffffff;
 }
 .RB p {
 	padding: 10px;

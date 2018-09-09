@@ -16,15 +16,6 @@
         <a href="{{ route('clientes.listar') }}" class="btn btn-danger">Buscar Promociones</a>
     </section>
     @endif
-    <section class="destacados">
-        @if ( isset($slots) )
-            @include('customers.cupones')
-        @endif
-    </section>
-
-    @if( !auth()->user()->tieneSlots() )
-        <h4>No tienes slots para reclamar cupones, adquiere uno o busca quien esta <a href="{{ route('clientes.adquirirslot') }}">regalando slots</a></h4>
-    @endif
 </main>
 @endsection
 
