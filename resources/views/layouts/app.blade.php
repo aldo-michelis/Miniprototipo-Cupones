@@ -13,6 +13,7 @@
 <body>
 <!-- body code goes here -->
 <header>
+    <input type="hidden" id="path" value="{{ url('') }}" >
     <section class="menu">
         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #5970B6;">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\CouponDetail;
 use App\Dispenser;
+use App\Mail\CodeSendingMail;
 use App\Payment;
 use App\Slot;
 use App\User;
@@ -11,6 +12,7 @@ use App\Coupon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Validator;
+use Mail;
 
 class CustomerController extends Controller
 {
@@ -90,7 +92,7 @@ class CustomerController extends Controller
 
     public function listarCodigos( $coupon_id = null )
     {
-        if( Auth::user()->tieneSlotsLibres() ) {
+        if (Auth::user()->tieneSlotsLibres()) {
             if (!isset($coupon_id))
                 $cuopons = Coupon::with('user')->where('qty', '>', '0')->get();
             else
@@ -100,7 +102,9 @@ class CustomerController extends Controller
 
             return view('customers.listar', ['cuopons' => $cuopons]);
         }
-        return redirect('clientes')->withErrors(['error' => 'Ya no tienes slots libres, por favor, canjea tus cupones o adquiere más slots']);
+        return redirect('clientes')->withErrors([
+            'error' => 'Ya no tienes slots libres, por favor, canjea tus cupones o adquiere más slots'
+        ]);
     }
 
     public function cupon($id){
@@ -140,7 +144,11 @@ class CustomerController extends Controller
 
             // TODO Codigo para enviar por correo o sms
 
-            return response()->json(['status' => true, 'message' => 'El codigo de redención ha sido enviado a tu correo registrado']);
+            return response()->json([
+                'status'    => true,
+                'message'   => 'El codigo de redención ha sido enviado a tu correo registrado',
+                'phone'     => 1
+            ]);
         }
     }
 
@@ -191,5 +199,11 @@ class CustomerController extends Controller
             'status' => 0
         ]);
         return redirect()->route('clientes.index');
+    }
+
+    public function enviarPorMensaje(){
+        $detail = CouponDetail::where('user_id', auth()->id())->orderby('created_at', 'DESC')->take(1)->get();
+        Mail::to(auth()->user()->username)->send(new CodeSendingMail($detail[0]));
+        return response()->json(['status' => true]);
     }
 }

@@ -14,15 +14,59 @@ $(document).ready(function () {
                     dataType: 'JSON',
                     success: function(data){
                         if ( data.status ){
-                            swal(data.message, {
-                                icon: "success",
-                            }).then((aceptar) => {
-                                window.location.reload()
+                            // Si la respuesta es afirmativa se lanza otro, indicando lo correcto, o capturando el numero.
+                            swal({
+                                title: "Información del Cupon",
+                                text: _info,
+                                icon: "info",
+                                buttons: {
+                                    phone:{
+                                        text: "Enviar a mi Telefono",
+                                        value: data.phone
+                                    },
+                                    accept:{
+                                        text: "Aceptar",
+                                        value : true
+                                    }
+                                },
+                            }).then((phone) => {
+                                if (phone) {
+                                    $.ajax({
+                                        url: "enviar-mensaje",
+                                        method : 'POST',
+                                        data: {
+                                            id: 'algun id',
+                                            _token: $('input[name=_token]').val()
+                                        },
+                                        dataType: 'JSON',
+                                        success: function(data){
+                                            if ( data.status ){
+                                                swal('Se ha enviado correctamente', {
+                                                    icon: "success",
+                                                });
+                                            }
+                                        }
+                                    });
+                                }else{
+                                    swal({
+                                        text: "Por favor ingrese en telefono al que se va a enviar el codigo.",
+                                        content: 'input',
+                                        button:{
+                                            text: 'Enviar',
+                                            value: true
+                                        }
+                                    });
+                                }
                             });
                         }
                     }
                 });
             }
         });
+    });
+    // EOF .coupon click
+
+    $('.slot').click(function () {
+        $(window).attr('location', $('#path').val() + '/clientes/listar-cupones')
     });
 });
