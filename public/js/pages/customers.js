@@ -155,4 +155,8 @@ $(document).ready(function () {
             }
         });
     });
+
+    $('.slot-vacio').click(function () {
+        window.location.replace('clientes/listar-cupones');
+    });
 });

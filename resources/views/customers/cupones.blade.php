@@ -6,7 +6,7 @@
             <img src="{{ asset('images/'.$slot->detail->coupon->moneda().'.png') }}" height="20px" alt="La Strada" align="right">
         </div>
     @else
-        <div class="slot">
+        <div class="slot-vacio">
             <img src="images/eucari-ico.png" height="25px" alt="RB">
             RB Cortesía de La Strada
             <img src="images/logo-strada.png" height="20px" alt="La Strada" align="right">
