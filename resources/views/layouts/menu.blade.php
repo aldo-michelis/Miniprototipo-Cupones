@@ -3,32 +3,34 @@
         <li class="nav-item active">
             <a class="nav-link" href="{{ url('') }}">Home <span class="sr-only">(current)</span></a>
         </li>
-        @if( Auth::user()->user_type == 1 )
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Negocio
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="{{ route('negocios.agregar') }}">Publicar Bonos</a>
-                    <a class="dropdown-item" href="{{ route('negocios.validar') }}">Valdiar Bonos</a>
-                    <a class="dropdown-item" href="{{ route('preconfigurar') }}">Cupones Preconfigurados</a>
-                    <a class="dropdown-item" href="{{ route('negocios.cobrar') }}">Pagos con Monedas</a>
-                    <a class="dropdown-item" href="{{ route('negocios.publicar') }}">Publicar Slots</a>
-                </div>
-            </li>
-        @else
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Cliente
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="{{ route('clientes.pagar') }}">Pagar con Monedas</a>
-                    <a class="dropdown-item" href="{{ route('clientes.listar') }}">Buscar Promociones</a>
-                    <a class="dropdown-item" href="{{ route('clientes.adquirirslot') }}">Adquitir Slots</a>
-                </div>
-            </li>
+        @if( auth()->check() )
+            @if( Auth::user()->user_type == 1 )
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Negocio
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{{ route('negocios.agregar') }}">Publicar Bonos</a>
+                        <a class="dropdown-item" href="{{ route('negocios.validar') }}">Valdiar Bonos</a>
+                        <a class="dropdown-item" href="{{ route('preconfigurar') }}">Cupones Preconfigurados</a>
+                        <a class="dropdown-item" href="{{ route('negocios.cobrar') }}">Pagos con Monedas</a>
+                        <a class="dropdown-item" href="{{ route('negocios.publicar') }}">Publicar Slots</a>
+                    </div>
+                </li>
+            @else
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Cliente
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{{ route('clientes.pagar') }}">Pagar con Monedas</a>
+                        <a class="dropdown-item" href="{{ route('clientes.listar') }}">Buscar Promociones</a>
+                        <a class="dropdown-item" href="{{ route('clientes.adquirirslot') }}">Adquitir Slots</a>
+                    </div>
+                </li>
+            @endif
         @endif
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"

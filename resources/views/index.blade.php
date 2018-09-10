@@ -7,73 +7,53 @@
     <title>Inicio | {{ config('app.name') }}</title>
     <!-- Bootstrap -->
     <link href="{{ asset('css/bootstrap-4.0.0.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/layout-styles.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/layout-styles-euca.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body>
 <!-- body code goes here -->
 <!-- contenido general code goes here -->
 <main>
-    <section class="hero">
-        <div class="call-to-enter">
-            @if( Auth::guest() )
-                &nbsp;<strong>Regístrate</strong> y obtén todos los beneficios.
-                <br>
-                <a href="{{ route('clientes.registrar') }}"><input type="button" value="Cliente" class="reg-cliente"></a>
-                <a href="{{ route('negocios.registrar') }}"> <input type="button" value="Empresa"></a></div>
-            @else
-                <a href="{{ route('logout') }}"> <input type="button" value="Cerrar Sesión"></a></div>
-            @endif
-            <span class="extra-logo" style="extra-logo">extra</span><span class="value-logo" style="value-logo">value</span>
-        <div class="slogan">Más usas, más ahorras</div>
-    </section>
 
-    @if( Auth::guest() )
+@if( Auth::guest() )
     <!-- login -->
     <div class="registro-inic">
         <section class="acceder">
             <form method="POST" action="{{ route('login') }}">
                 {{ csrf_field() }}
-                <div>
-                    <input type="text" id="username" name="username" placeholder="usuario">
-                    <input type="password" id="password" name="password" placeholder="contraseña">
-                    <br>
-                    <label>
-                        <input type="checkbox"> Mantenerme Conectado
-                    </label>
-                    &nbsp;
-                    <button type="submit">Ingresar</button>
+            <div>
+                <input type="text" id="username" name="username" placeholder="usuario">
+                <input type="password" id="password" name="password" placeholder="contraseña">
+                <br>
+                <label>
+                    <input type="checkbox"> Mantenerme Conectado
+                </label>
+                &nbsp;
+                <a href="clientes.html"><button type="submit">Ingresar</button></a>
 
-                </div>
+            </div>
             </form>
         </section>
         <div class="call-to-enter" style="background-color:#c0c0c0">¿Olvidaste tu usuario o contraseña?</div>
     </div>
+@endif
     <!-- fin de login -->
+    <section class="hero">
+    @if( Auth::guest() )
+        <div class="call-to-enter">&nbsp;<strong>Regístrate</strong> y obtén todos los beneficios.
+            <br>
+            <a href="{{ route('clientes.registrar') }}">
+                <input type="button" value="Cliente" class="reg-cliente">
+            </a>
+            <a href="{{ route('negocios.registrar') }}">
+                <input type="button" value="Empresa">
+            </a>
+        </div>
     @endif
+        <p>&nbsp;</p>
+        <img src="images/eucari-logo.png" alt="eucary" width="200" class="img-fluid">
+        <p>&nbsp;</p>
 
-    <section class="destacados">
-        <div class="card col-md-4"><img src="https://www.conecto.mx/file/2016/08/home.png" alt="Card image cap"
-                                        width="318" height="180" class="card-img-top">
-            <div class="card-body">
-                <h5 class="card-title">CAPELTIC</h5>
-                <p class="card-text">10% de descuento en la compra de dos cafés.</p>
-            </div>
-        </div>
-        <div class="card col-md-4"><img
-                    src="http://static1.squarespace.com/static/56244314e4b0fd5726abd8bc/t/5625c078e4b0d3b12af001d9/1499108282075/"
-                    alt="Card image cap" width="318" height="180" class="card-img-top">
-            <div class="card-body">
-                <h5 class="card-title">La Strada</h5>
-                <p class="card-text">Ven a celebrar tu cumpleaños. Tu cuenta, va por nuestra cuenta.</p>
-            </div>
-        </div>
-        <div class="card col-md-4"><img src="fotos/groupon-dibujo-460x279.jpg" alt="Card image cap" width="318"
-                                        height="180" class="card-img-top">
-            <div class="card-body">
-                <h5 class="card-title">Clases de Dibujo a domicilio</h5>
-                <p class="card-text">Paga con monedas electrónicas. $M 450 por 3 meses.</p>
-            </div>
-        </div>
+
     </section>
 </main>
 
@@ -90,8 +70,9 @@
             Servicio al cliente <br>
             Síguenos - Redes</p>
     </div>
-    <div class="legales">&copy; 2018 Plataforma de Sinergia Comercial, S.A.</div>
-</footer>
+    <div class="legales">&copy; 2018 Plataforma de Sinergia Comercial, S.A.</div>	</footer>
+
+
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>

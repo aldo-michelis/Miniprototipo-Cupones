@@ -1,6 +1,6 @@
 @foreach( $slots as $slot )
     @if( isset($slot->detail) )
-        <div class="slot">
+        <div class="slot" data-desc="{{ $slot->detail->coupon->description }}" data-id="{{ $slot->detail->id }}">
             <img src="{{ asset('images/default.jpeg') }}" height="25px" alt="RB">
             {{ $slot->detail->coupon->user->name }}
             <img src="{{ asset('images/'.$slot->detail->coupon->moneda().'.png') }}" height="20px" alt="La Strada" align="right">

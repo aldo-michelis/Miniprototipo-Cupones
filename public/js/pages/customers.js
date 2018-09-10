@@ -67,6 +67,13 @@ $(document).ready(function () {
     // EOF .coupon click
 
     $('.slot').click(function () {
-        $(window).attr('location', $('#path').val() + '/clientes/listar-cupones')
+        var _info   = $(this).data('desc');
+        var _id     = $(this).data('id');
+        swal({
+            title: "Información del Cupon",
+            text: _info,
+            icon: "info",
+            buttons: ['Regresar', 'Cancelar','Enviar a Mi Telefono']
+        });
     });
 });
