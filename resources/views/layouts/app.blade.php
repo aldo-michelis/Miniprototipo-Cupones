@@ -36,6 +36,9 @@
 
     @include('layouts.totales')
 
+    @include('layouts.errors')
+
+    @include('layouts.messages')
     <section class="RB">
         @if ( isset($slots) && auth()->user()->user_type == 2 )
             @include('customers.cupones')
@@ -44,9 +47,6 @@
     </section>
 
 </header>
-
-@include('layouts.errors')
-@include('layouts.messages')
 
 @yield('content')
 
@@ -72,6 +72,8 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="{{ asset('js/popper.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap-4.0.0.js') }}"></script>
+<!-- Sweet Alert-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 @yield('scripts')
 

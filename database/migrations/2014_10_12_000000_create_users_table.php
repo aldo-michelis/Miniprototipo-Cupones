@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('name')->default('');
             $table->string('password');
             $table->integer('user_type')->default('2');
+            $table->string('phone')->default('');
             $table->decimal('mc_saldo')->default('1000');
             $table->rememberToken();
             $table->timestamps();

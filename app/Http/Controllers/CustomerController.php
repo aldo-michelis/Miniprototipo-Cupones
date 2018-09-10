@@ -105,13 +105,13 @@ class CustomerController extends Controller
 
     public function cupon($id){
         if( !Auth::user()->tieneSlotsLibres() ){
-            return redirect()->route('clientes.listar')->withErrors(['error' => 'Ya no tienes slots libres, por favor, canjea tus cupones o adquiere más slots']);
+            return response()->json(['status' => false, 'message' => 'Ya no tienes slots libres, por favor, canjea tus cupones o adquiere más slots']);
         }else{
             $user_id = auth()->id();
             $coupon = Coupon::where('id', $id)->first();
 
             if( $coupon->qty <= 0 )
-                return redirect()->route('clientes.listar')->withErrors(['error' => 'Ya cuentas con un cupon']);
+                return response()->json(['status' => false, 'message' => 'Este cupon ya no tiene codigos disponibles']);
 
             $detail = CouponDetail::create([
                             'coupon_id' => $id,
@@ -138,7 +138,9 @@ class CustomerController extends Controller
                 $query->where('code', $code)->get();
             }, 'user'])->where('id', $id)->first();
 
-            return view('customers.cupon', ['coupon' => $coupon]);
+            // TODO Codigo para enviar por correo o sms
+
+            return response()->json(['status' => true, 'message' => 'El codigo de redención ha sido enviado a tu correo registrado']);
         }
     }
 

@@ -57,6 +57,7 @@ Route::prefix('clientes')->group(function (){
         Route::post('pagar', 'CustomerController@validarPago')->name('clientes.validarpago');
         Route::get('adquirir', 'CustomerController@adquirirSlot')->name('clientes.adquirirslot');
         Route::get('adquirir-slot/{id}', 'CustomerController@salvarSlot')->name('clientes.salvar');
+        Route::get('adquirir-slot/{id}', 'CustomerController@salvarSlot')->name('clientes.salvar');
     });
 });
 

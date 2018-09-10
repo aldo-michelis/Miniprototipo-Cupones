@@ -27,7 +27,7 @@ class Coupon extends Model
                 $ret .= ' (Cupon de Descuento)';
         }
         else if ( $this->currency == 2 ){
-            $ret .= 'CMC';
+            $ret .= 'MC';
 
             if( $explain )
                 $ret .= ' (Cheque de Monedas Corrientes)';
