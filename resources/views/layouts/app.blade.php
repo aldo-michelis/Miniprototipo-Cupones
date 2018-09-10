@@ -48,7 +48,7 @@
     </section>
 
 </header>
-
+{{ csrf_field() }}
 @yield('content')
 
 

@@ -69,11 +69,90 @@ $(document).ready(function () {
     $('.slot').click(function () {
         var _info   = $(this).data('desc');
         var _id     = $(this).data('id');
+        var _phone     = $(this).data('phone');
+        var _token     = $('input[name=_token]').val();
         swal({
-            title: "Información del Cupon",
+            title: "Descripción del cupon",
             text: _info,
             icon: "info",
-            buttons: ['Regresar', 'Cancelar','Enviar a Mi Telefono']
+            buttons: {
+                cancel: 'Regresar',
+                enviar: {
+                    text: 'Enviar a mi telefono',
+                    value: 'enviar',
+                },
+                borrar: {
+                    text: 'Eliminar',
+                    value: 'delete',
+                    className: 'danger'
+                }
+            }
+        }).then((response) => {
+            switch (response){
+                case 'enviar':
+                    if ( _phone != '' ) {
+                        swal({
+                            title:  'Notificación',
+                            text:   'Es correcto el numero: ' + _phone,
+                            icon:   'warning',
+                        }).then(_phone => {
+                            if(!_phone) throw null;
+                            return fetch('clientes/enviar-mensaje/' + _id);
+                        }).then(response => {
+                            return response.json();
+                        }).then(json => {
+                            swal({
+                                title:  'Notificación',
+                                text:   'El mensaje se envio correctamente.',
+                                icon:   'success'
+                            });
+                        });
+                    }else{
+                        swal({
+                            text: "Por favor ingrese en telefono al que se va a enviar el codigo.",
+                            content: 'input',
+                            button:{
+                                text: 'Enviar',
+                                value: true
+                            }
+                        });
+                    }
+                    break;
+
+                case 'delete' :
+                    swal({
+                        title:  'Esta seguro que desea eliminar el codigo.',
+                        text:   'esta accion es irreversible.',
+                        icon:   'error',
+                        buttons: {
+                            accept:{
+                                text: 'Si eliminar',
+                                value: true
+
+                            },
+                            cancel: 'Cancelar'
+                        }
+                    }).then(accept => {
+                        if( accept ) {
+
+                            data = {
+                                id : _id,
+                                _token : _token
+                            }
+
+                            return fetch('clientes/eliminar-detalle', {
+                                method: 'POST',
+                                body: JSON.stringify(data),
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                }
+                            }).then(response =>{
+                                window.location.reload();
+                            });
+                        }
+                    });
+                    break;
+            }
         });
     });
 });

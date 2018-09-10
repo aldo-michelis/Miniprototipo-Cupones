@@ -8,7 +8,6 @@
 <main>
     <section class="RB">
         <h1>Promociones destacadas</h1>
-        {{ csrf_field() }}
         @foreach( $cuopons as $cuopon )
             <div class="coupon" data-desc="{{ $cuopon->description }}" data-id="{{ $cuopon->id }}">
                 <img src="{{ asset('images/logo-strada.png') }}" height="25px" alt="Receptor de Cupon">

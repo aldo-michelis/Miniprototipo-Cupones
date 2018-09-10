@@ -11,6 +11,7 @@ use App\User;
 use App\Coupon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Symfony\Component\HttpFoundation\IpUtils;
 use Validator;
 use Mail;
 
@@ -201,9 +202,28 @@ class CustomerController extends Controller
         return redirect()->route('clientes.index');
     }
 
-    public function enviarPorMensaje(){
-        $detail = CouponDetail::where('user_id', auth()->id())->orderby('created_at', 'DESC')->take(1)->get();
+    public function enviarPorMensaje($id)
+    {
+        $detail = CouponDetail::where('id', $id)->get();
         Mail::to(auth()->user()->username)->send(new CodeSendingMail($detail[0]));
         return response()->json(['status' => true]);
+    }
+
+    public function eliminarCuponDetalle(){
+        $id = Input::get('id');
+
+        $slot = Slot::where('coupon_id', $id)->update([
+            'coupon_id' => 0
+        ]);
+        $detail = CouponDetail::where('id', $id)->first();
+
+        $coupon = Coupon::where('id', $detail->coupon_id)->first();
+
+        $coupon->update([
+            'qty' => $coupon->qty += 1
+        ]);
+        $detail->delete();
+
+        return response()->json(['status' => true ]);
     }
 }
