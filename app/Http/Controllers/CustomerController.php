@@ -110,24 +110,24 @@ class CustomerController extends Controller
     public function cupon($id){
         if( !Auth::user()->tieneSlotsLibres() ){
             return response()->json(['status' => false, 'message' => 'Ya no tienes slots libres, por favor, canjea tus cupones o adquiere más slots']);
-        }else{
+        }else {
             $user_id = auth()->id();
             $coupon = Coupon::where('id', $id)->first();
 
-            if( $coupon->qty <= 0 )
+            if ($coupon->qty <= 0)
                 return response()->json(['status' => false, 'message' => 'Este cupon ya no tiene codigos disponibles']);
 
             $detail = CouponDetail::create([
-                            'coupon_id' => $id,
-                            'code' => $this->getRandomCode(),
-                            'status' => 0,
-                            'user_id' => Auth::id()
-                        ]);
+                'coupon_id' => $id,
+                'code' => $this->getRandomCode(),
+                'status' => 0,
+                'user_id' => Auth::id()
+            ]);
 
             $slot = Slot::where('user_id', auth()->id())
-                        ->where('coupon_id', 0)
-                        ->where('status', 0)
-                        ->first();
+                ->where('coupon_id', 0)
+                ->where('status', 0)
+                ->first();
 
             $slot->update([
                 'coupon_id' => $detail->id
@@ -138,7 +138,7 @@ class CustomerController extends Controller
             ]);
             $code = $detail->code;
 
-            $coupon = Coupon::with(['details' => function($query) use ( $user_id, $code ){
+            $coupon = Coupon::with(['details' => function ($query) use ($user_id, $code) {
                 $query->where('code', $code)->get();
             }, 'user'])->where('id', $id)->first();
 
@@ -147,7 +147,7 @@ class CustomerController extends Controller
             return response()->json([
                 'status'    => true,
                 'message'   => 'El codigo de redención ha sido enviado a tu correo registrado',
-                'phone'     => 1
+                'phone'     => auth()->user()->phone
             ]);
         }
     }
