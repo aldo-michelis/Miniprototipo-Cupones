@@ -102,20 +102,31 @@ class MerchantController extends Controller
                 $query->where('user_id', $id)->first();
             }])->where('id', Input::get('cupon_id'))->first();
 
-            // TODO actualizar los saldos de las cuentas de los usuarios involucrados
+            $monto = Input::get('consumo');
+
             $coupon->status = 1;
             $coupon->save();
 
             $user = User::find($coupon->user_id);
 
+            // Cliente
             if( $coupon->coupon->currency == 2 ){
                 $user->mc_saldo +=  $coupon->coupon->value;
                 $user->save();
+            }else{
+                $user->total += ($monto - $coupon->coupon->value);
+                $user->save();
+
+                $merchant = User::find($coupon->coupon->user_id);
+                $merchant->total += ($monto - $coupon->coupon->value);
+                $merchant->save();
             }
 
             $slot = Slot::where('user_id', $user->id)
                 ->where('coupon_id', $coupon->id)
-                ->first();
+                ->get();
+
+            return $slot;
 
             $slot->update([
                 'coupon_id' => 0

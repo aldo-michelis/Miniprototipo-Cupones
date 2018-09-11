@@ -33,21 +33,25 @@
     @if( isset($cupon) )
         <form action="{{ route('negocios.buscar') }}" method="post">
             {{ csrf_field() }}
-            <div class="col-md-12">
-                <input type="hidden" name="cupon_id" id="cupon_id" value="{{ $cupon->id }}">
-                <input type="submit" value="Validar Código">
-            </div>
-            <br>
-            <div class="col-md-12">
+            <div class="row">
                 <div class="card col-md-4">
-                    <img src="{{ asset('images/la-strada.jpeg') }}" alt="Card image cap"
-                         width="318" height="180" class="card-img-top">
                     <div class="card-body">
                         <h5 class="card-title">{{ $cupon->user()->name }} | {{ $cupon->moneda() }} $ {{ $cupon->coupon->value }} | <strong>{{ $cupon->code }}</strong></h5>
                         <p>
                             {{ $cupon->coupon->description }}
                         </p>
                     </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <input type="hidden" name="cupon_id" id="cupon_id" value="{{ $cupon->id }}">
+                <div class="control-group">
+                    <label for="" class="conr">Ingrese Consumo Total</label>
+                    <input type="number" name="consumo" id="consumo"> <br>
+                </div>
+                <div>
+                    <input type="submit" value="Validar Código">
                 </div>
             </div>
         </form>
