@@ -67,6 +67,9 @@
                     <a class="dropdown-item" href="{{ route('clientes.adquirirslot') }}">Adquitir Slots</a>
                 </div>
             @endif
+                <div>
+                    <a href="{{ route('logout') }}">Cerrar Sesión</a>
+                </div>
         @endif
     </section>
 
