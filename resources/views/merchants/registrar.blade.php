@@ -33,7 +33,7 @@
                 <input type="text" name="contact_name" id="contact_name">
             </div>
             <div>
-                <label for=""><Correo></Correo></label>
+                <label for="">Correo</label>
                 <input type="text" name="username" id="username">
             </div>
             <div>
