@@ -15,18 +15,21 @@
 Route::get('/new', function(){
 
     $user = App\User::create([
-        'username' => '3319900075',
+        'username' => 'admin@correo.com',
         'name' => 'Administrador General',
         'password' => '12345',
         'mc_saldo' => 1000,
+        'total' => 0,
+        'phone' => '12345',
         'user_type' => '1'
     ]);
 
     $user = App\User::create([
-        'username' => '3314731668',
+        'username' => 'aldiux@gmail.com',
         'name' => 'Cliente de Ejemplo',
         'password' => '12345',
         'mc_saldo' => 0,
+        'total' => 0,
         'user_type' => '2'
     ]);
 

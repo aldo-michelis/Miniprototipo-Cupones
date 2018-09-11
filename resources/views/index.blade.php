@@ -1,3 +1,26 @@
+
+@if( Auth::guest() )
+    <!-- login -->
+    <div class="registro-inic">
+        <section class="acceder">
+            <form method="POST" action="{{ route('login') }}">
+                {{ csrf_field() }}
+                <div>
+                    <input type="text" id="username" name="username" placeholder="usuario">
+                    <input type="password" id="password" name="password" placeholder="contraseña">
+                    <br>
+                    <label>
+                        <input type="checkbox"> Mantenerme Conectado
+                    </label>
+                    &nbsp;
+                    <a href="clientes.html"><button type="submit">Ingresar</button></a>
+
+                </div>
+            </form>
+        </section>
+    </div>
+@endif
+
 <p>
     En construcción
 

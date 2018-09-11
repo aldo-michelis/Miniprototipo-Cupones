@@ -106,6 +106,7 @@
 <script src="{{ asset('js/bootstrap-4.0.0.js') }}"></script>
 <!-- Sweet Alert-->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="{{ asset('js/pages/customers.js') }}"></script>
 
 @yield('scripts')
 
