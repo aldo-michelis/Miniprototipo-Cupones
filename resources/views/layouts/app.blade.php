@@ -43,8 +43,8 @@
     <section class="RB">
         @if ( isset($slots) && auth()->user()->user_type == 2 )
             @include('customers.cupones')
+            <p> <a href="#">+ Adquirir nuevo RB</a></p>
         @endif
-        <p> <a href="#">+ Adquirir nuevo RB</a></p>
     </section>
 
 </header>
