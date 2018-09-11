@@ -13,7 +13,7 @@
 <body>
 <!-- body code goes here -->
 <header>
-    <input type="hidden" id="path" value="{{ url('') }}" >
+    <!--input type="hidden" id="path" value="{{ url('') }}" >
     <section class="menu">
         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #5970B6;">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
@@ -21,25 +21,56 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             @include('layouts.menu')
-            <!--búsqueda funciona un poco raro :( -->
             <div class="busca-gen" align="right">
                 <form action="#">
                     <input type="text" placeholder="Buscar Promociones" name="search">
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </form>
             </div>
-            <!--Fin de la búsqueda que funciona un poco raro :( -->
-
         </nav>
 
     </section>
-    <section class="hd-logo"><span class="extra-logo-sm">eucari</span></section>
+    <section class="hd-logo"><span class="extra-logo-sm">eucari</span></section!-->
 
     @include('layouts.totales')
 
     @include('layouts.errors')
 
     @include('layouts.messages')
+
+    <section class="RB">
+        @if( auth()->check() )
+            @if( Auth::user()->user_type == 1 )
+                <div>
+                    <a href="{{ route('negocios.agregar') }}">Publicar Bonos</a>
+                </div>
+                <div>
+                    <a href="{{ route('negocios.validar') }}">Valdiar Bonos</a>
+                </div>
+                <div>
+                    <a href="{{ route('preconfigurar') }}">Cupones Preconfigurados</a>
+                </div>
+                <div>
+                    <a href="{{ route('negocios.cobrar') }}">Pagos con Monedas</a>
+                </div>
+                <div>
+                    <a href="{{ route('negocios.publicar') }}">Publicar Slots</a>
+                </div>
+            @else
+                <div>
+                    <a class="dropdown-item" href="{{ route('clientes.pagar') }}">Pagar con Monedas</a>
+                </div>
+                <div>
+                    <a class="dropdown-item" href="{{ route('clientes.listar') }}">Buscar Promociones</a>
+                </div>
+                <div>
+                    <a class="dropdown-item" href="{{ route('clientes.adquirirslot') }}">Adquitir Slots</a>
+                </div>
+            @endif
+        @endif
+    </section>
+
+
     <section class="RB">
         @if ( isset($slots) && auth()->user()->user_type == 2 )
             @include('customers.cupones')
@@ -52,7 +83,7 @@
 @yield('content')
 
 
-<footer>
+<!--footer>
     <div class="pie">
         <p>La empresa <br>
             Historia <br>
@@ -65,7 +96,7 @@
             Síguenos - Redes</p>
     </div>
     <div class="legales">&copy; 2018 Plataforma de Sinergia Comercial, S.A.</div>
-</footer>
+</footer-->
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>

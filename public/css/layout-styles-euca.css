@@ -115,7 +115,7 @@ th {
 }
 .RB{
 	display: block;
-	background-color: #DEDEDE;
+	#background-color: #DEDEDE;
 	font-size: 1.1em;
 	font-weight: 600;
 	padding: 10px;
@@ -131,7 +131,11 @@ th {
 	box-shadow:2px 2px 2px grey;
 }
 
-.RB div:hover {
+.RB div a{
+	text-decoration: none;
+}
+
+.RB div a:hover {
 	background-color: #5970b6;
 	color: #ffffff;
 }
