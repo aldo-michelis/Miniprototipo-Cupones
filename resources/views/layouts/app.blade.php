@@ -58,13 +58,13 @@
                 </div>
             @else
                 <div>
-                    <a class="dropdown-item" href="{{ route('clientes.pagar') }}">Pagar con Monedas</a>
+                    <a href="{{ route('clientes.pagar') }}">Pagar con Monedas</a>
                 </div>
                 <div>
-                    <a class="dropdown-item" href="{{ route('clientes.listar') }}">Buscar Promociones</a>
+                    <a href="{{ route('clientes.listar') }}">Buscar Promociones</a>
                 </div>
                 <div>
-                    <a class="dropdown-item" href="{{ route('clientes.adquirirslot') }}">Adquitir Slots</a>
+                    <a href="{{ route('clientes.adquirirslot') }}">Adquitir Slots</a>
                 </div>
             @endif
                 <div>

@@ -37,6 +37,7 @@ class MerchantController extends Controller
     public function salvarRegistro(){
         $data = Input::all();
         $user = User::create($data);
+        $image = '';
         if( Input::hasFile('logo') ){
             $file = Input::file('logo');
             $image = Storage::put('images', $file, 'public');
