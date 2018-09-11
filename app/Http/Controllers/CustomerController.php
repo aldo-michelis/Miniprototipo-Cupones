@@ -186,20 +186,31 @@ class CustomerController extends Controller
     }
 
     public function salvarSlot($id){
-        $disp = Dispenser::find($id);
+        if( is_numeric($id) ) {
+            $disp = Dispenser::find($id);
 
-        $disp->update([
-            'qty' => $disp->qty - 1
-        ]);
+            $disp->update([
+                'qty' => $disp->qty - 1
+            ]);
 
-        Slot::create([
-            'user_id' => auth()->id(),
-            'merchant_id' => $disp->user->id,
-            'coupon_id' => 0,
-            'cad' => date('Y-m-d', strtotime('+1 ' . $disp->cad)),
-            'status' => 0
-        ]);
-        return redirect()->route('clientes.index');
+            Slot::create([
+                'user_id' => auth()->id(),
+                'merchant_id' => $disp->user->id,
+                'coupon_id' => 0,
+                'cad' => date('Y-m-d', strtotime('+1 ' . $disp->cad)),
+                'status' => 0
+            ]);
+            return redirect()->route('clientes.index');
+        }else{
+            Slot::create([
+                'user_id' => auth()->id(),
+                'merchant_id' => 1,
+                'coupon_id' => 0,
+                'cad' => date('Y-m-d', strtotime('+1 ' . $id)),
+                'status' => 0
+            ]);
+            return response()->json(['status' => true]);
+        }
     }
 
     public function enviarPorMensaje($id)

@@ -20,10 +20,10 @@ $(document).ready(function () {
                                 text: _info,
                                 icon: "info",
                                 buttons: {
-                                    phone:{
+                                    /*phone:{
                                         text: "Enviar a mi Telefono",
                                         value: data.phone
-                                    },
+                                    },*/
                                     accept:{
                                         text: "Aceptar",
                                         value : true
@@ -32,8 +32,7 @@ $(document).ready(function () {
                             }).then((phone) => {
                                 if (phone) {
                                     $.ajax({
-                                        url: "enviar-mensaje",
-                                        method : 'POST',
+                                        url: 'enviar-mensaje/' + _id,
                                         data: {
                                             id: 'algun id',
                                             _token: $('input[name=_token]').val()
@@ -77,10 +76,10 @@ $(document).ready(function () {
             icon: "info",
             buttons: {
                 cancel: 'Regresar',
-                enviar: {
+                /*enviar: {
                     text: 'Enviar a mi telefono',
                     value: 'enviar',
-                },
+                },*/
                 borrar: {
                     text: 'Eliminar',
                     value: 'delete',
@@ -166,6 +165,50 @@ $(document).ready(function () {
             title: "Información Impotante",
             text: _info,
             icon: "info"
+        });
+    });
+
+    $('#get-slot').click(function () {
+        swal({
+            title: 'Adquirir un nuevo receptor de Bono',
+            text: 'Con un nuevo Receptor de Bonos, podrás aprovechar más Bonos cuando tus Receptores actuales estén ocupados. \n' +
+            'Al seleccionarlo, adquieres de inmediato tu Receptor que podrás usar y pagar cuando valides el primer Bono en cualquier Negocio Registrado. El costo es de $10 mensuales o $100 anuales.\n' +
+            'También puedes buscar NRs que están regalando Receptores de Bonos',
+            icon: 'info',
+            buttons: {
+                months: {
+                    text: 'Mensual',
+                    value: 'months',
+                },
+                years: {
+                    text: 'Anual',
+                    value: 'years'
+                },
+                listar: {
+                    text: 'Buscar Cortesias',
+                    value: 'listar'
+                }
+            }
+        }).then(result => {
+           switch( result ){
+               case 'months':
+                   return fetch('clientes/adquirir-slot/' + result);
+                   break;
+               case 'years':
+                   return fetch('clientes/adquirir-slot/' + result);
+                   break;
+               case 'listar':
+                   window.location.replace('clientes/adquirir');
+                   break;
+           }
+        }).then(response => {
+            swal({
+                title: "Información Impotante",
+                text: "Se te ha agregado un nuevo contenedor de bonos.",
+                icon: "success"
+            }).then(result => {
+                window.location.reload();
+            });
         });
     });
 });

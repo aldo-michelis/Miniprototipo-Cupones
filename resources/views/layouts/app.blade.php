@@ -64,7 +64,7 @@
                     <a href="{{ route('clientes.listar') }}">Buscar Promociones</a>
                 </div>
                 <div>
-                    <a href="{{ route('clientes.adquirirslot') }}">Adquitir Slots</a>
+                    <a id="get-slot" href="#">Adquitir Slots</a>
                 </div>
             @endif
                 <div>
