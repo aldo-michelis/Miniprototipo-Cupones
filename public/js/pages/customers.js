@@ -159,4 +159,13 @@ $(document).ready(function () {
     $('.slot-vacio').click(function () {
         window.location.replace('clientes/listar-cupones');
     });
+
+    $('.totals').click(function () {
+        var _info = $(this).data('message');
+        swal({
+            title: "Información Impotante",
+            text: _info,
+            icon: "info"
+        });
+    });
 });

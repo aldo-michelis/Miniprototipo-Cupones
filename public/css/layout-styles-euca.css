@@ -109,6 +109,10 @@ th {
 	background-color: #324273;
 	color: #ffffff;
 }
+
+.edoCuenta div:hover {
+	background-color: #5970b6;
+}
 .RB{
 	display: block;
 	background-color: #DEDEDE;
