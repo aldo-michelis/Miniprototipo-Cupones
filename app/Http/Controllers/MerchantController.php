@@ -43,8 +43,9 @@ class MerchantController extends Controller
         }
         $data = array_merge($data,['user_id' => $user->id, 'logo' => $image]);
         Merchant::create($data);
-        Auth::guard()->login($user);
-        return redirect()->route('login');
+        //Auth::guard()->login($user);
+        //return redirect()->route('login');
+        return view('merchants.tellamamos');
     }
 
     public function salvarCodigos(){

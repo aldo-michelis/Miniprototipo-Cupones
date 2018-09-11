@@ -13,26 +13,6 @@
 <body>
 <!-- body code goes here -->
 <header>
-    <input type="hidden" id="path" value="{{ url('') }}" >
-    <section class="menu">
-        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #5970B6;">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        @include('layouts.menu')
-        <!--búsqueda funciona un poco raro :( -->
-            <div class="busca-gen" align="right">
-                <form action="#">
-                    <input type="text" placeholder="Buscar Promociones" name="search">
-                    <button type="submit"><i class="fa fa-search"></i></button>
-                </form>
-            </div>
-            <!--Fin de la búsqueda que funciona un poco raro :( -->
-
-        </nav>
-
-    </section>
     <section class="hd-logo"><span class="extra-logo-sm">eucari</span></section>
     @include('layouts.errors')
 </header>
@@ -53,8 +33,12 @@
                 <input type="text" name="contact_name" id="contact_name">
             </div>
             <div>
-                <label for="">Telefono</label>
+                <label for=""><Correo></Correo></label>
                 <input type="text" name="username" id="username">
+            </div>
+            <div>
+                <label for="">Telefono</label>
+                <input type="text" name="phone" id="phone">
             </div>
             <div>
                 <label for="">Giro</label>
@@ -83,21 +67,6 @@
     </section>
     <p>&nbsp;</p></main>
 <!-- inicia el footer -->
-
-<footer>
-    <div class="pie">
-        <p>La empresa <br>
-            Historia <br>
-            Propuesta de valor <br>
-            Trabaja con nosotros </p>
-    </div>
-    <div class="pie">
-        <p> Preguntas frecuentes <br>
-            Servicio al cliente <br>
-            Síguenos - Redes</p>
-    </div>
-    <div class="legales">&copy; 2018 Plataforma de Sinergia Comercial, S.A.</div>
-</footer>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>

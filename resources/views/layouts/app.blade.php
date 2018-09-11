@@ -29,8 +29,8 @@
             </div>
         </nav>
 
-    </section>
-    <section class="hd-logo"><span class="extra-logo-sm">eucari</span></section!-->
+    </section-->
+    <section class="hd-logo"><span class="extra-logo-sm">eucari</span></section>
 
     @include('layouts.totales')
 
