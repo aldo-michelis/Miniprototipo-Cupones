@@ -9,10 +9,10 @@
     <h3>Enlace de Promoción</h3>
     <strong>
         <a href="http://cupones.com/promocion/{{ $enlace }}" target="_blank">
-            http://cupones.com/promocion/{{ $enlace }}
+            http://18.223.232.129/public/promocion/{{ $enlace }}
         </a>
     </strong>
     <br>
-    {!! QrCode::size(200)->margin(3)->generate('http://cupones.com/promocion/'.$enlace) !!}
+    {!! QrCode::size(200)->margin(3)->generate('http://18.223.232.129/public/promocion/'.$enlace) !!}
 </main>
 @endsection
