@@ -202,13 +202,44 @@ $(document).ready(function () {
                    break;
            }
         }).then(response => {
-            swal({
-                title: "Información Impotante",
-                text: "Se te ha agregado un nuevo contenedor de bonos.",
-                icon: "success"
-            }).then(result => {
-                window.location.reload();
-            });
+            response.json();
+
+            if (response.status) {
+                swal({
+                    title: "Información Impotante",
+                    text: "Se te ha agregado un nuevo contenedor de bonos.",
+                    icon: "success"
+                }).then(result => {
+                    window.location.reload();
+                });
+            }
+        });
+    });
+
+    $('.sel-slot').click(function () {
+        var _id     = $(this).data('id');
+        swal({
+            title: 'Adquirir un nuevo receptor de Bono',
+            text: 'Con un nuevo Receptor de Bonos, podrás aprovechar más Bonos cuando tus Receptores actuales estén ocupados. \n' +
+            'Al seleccionarlo, adquieres de inmediato tu Receptor que podrás usar y pagar cuando valides el primer Bono en cualquier Negocio Registrado.',
+            icon: 'info',
+            buttons: ['Calcelar', 'Adjudicar']
+        }).then(result => {
+            if(result){
+                return fetch('adquirir-slot/' + _id);
+            }
+        }).then(response => {
+            response.json();
+
+            if (response.status) {
+                swal({
+                    title: "Información Impotante",
+                    text: "Se te ha agregado un nuevo contenedor de bonos.",
+                    icon: "success"
+                }).then(result => {
+                    //window.location.reload();
+                });
+            }
         });
     });
 });

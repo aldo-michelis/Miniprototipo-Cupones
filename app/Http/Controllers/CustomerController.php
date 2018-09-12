@@ -200,7 +200,7 @@ class CustomerController extends Controller
                 'cad' => date('Y-m-d', strtotime('+1 ' . $disp->cad)),
                 'status' => 0
             ]);
-            return redirect()->route('clientes.index');
+            return response()->json(['status' => true]);
         }else{
             Slot::create([
                 'user_id' => auth()->id(),
