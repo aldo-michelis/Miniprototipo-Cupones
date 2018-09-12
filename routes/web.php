@@ -18,7 +18,7 @@ Route::get('/new', function(){
         'username' => 'admin@correo.com',
         'name' => 'Administrador General',
         'password' => '12345',
-        'mc_saldo' => 1000,
+        'mc_saldo' => 0,
         'total' => 0,
         'phone' => '12345',
         'user_type' => '1'
@@ -44,7 +44,7 @@ Route::get('code', function ()
 Auth::routes();
 
 Route::get('', 'HomeController@index')->name('');
-Route::get('promocion/{url}', 'HomeController@promocionUrl')->name('promocion');
+Route::get('promocion/{url?}', 'HomeController@promocionUrl')->name('promocion');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 // Rutas del Cliente
