@@ -26,8 +26,14 @@ class HomeController extends Controller
         }
     }
 
-    public function promocionUrl($url){
+    public function promocionUrl($url = null){
         $coupon = Coupon::where('url', $url)->first();
-        return view('customers.registrar',['coupon' => $coupon]);
+
+        if( isset($coupon) && count($coupon) > 0 ){
+            return view('customers.registrar',['coupon' => $coupon]);
+
+        }
+
+        return redirect('');
     }
 }
