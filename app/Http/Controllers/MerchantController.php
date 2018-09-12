@@ -116,11 +116,15 @@ class MerchantController extends Controller
                 $user->mc_saldo +=  $coupon->coupon->value;
                 $user->save();
             }else{
-                $user->total += ($monto - $coupon->coupon->value);
+                $total = ($monto - $coupon->coupon->value);
+
+
+                $user->total += $total;
                 $user->save();
 
                 $merchant = User::find($coupon->coupon->user_id);
-                $merchant->total += ($monto - $coupon->coupon->value);
+                $merchant->total += $total;
+                $merchant->mc_saldo += $coupon->coupon->value;
                 $merchant->save();
             }
 
