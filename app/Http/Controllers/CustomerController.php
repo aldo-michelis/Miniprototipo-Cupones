@@ -24,6 +24,7 @@ class CustomerController extends Controller
                 $query->with('user')->get();
             }])->where('status', 0)->get();
         }])->where('user_id', auth()->id())->get();
+
         return view('customers.index', ['slots' => $slots]);
     }
 
@@ -63,10 +64,17 @@ class CustomerController extends Controller
             # Se asigna un slot con el usuario 1
             $slot = Slot::create([
                 'user_id' => $user->id,
-                'merchant_id' => 1,
+                'merchant_id' => $coupon->user_id,
                 'coupon_id' => $coupon->id,
                 'cad' => date('Y-m-d', strtotime(now()->addYear(1))),
                 'status' => 0
+            ]);
+
+            $detail = CouponDetail::create([
+                'coupon_id' => $coupon->id,
+                'code' => $this->getRandomCode(),
+                'status' => 0,
+                'user_id' => $user->id
             ]);
 
             return redirect('clientes');
