@@ -13,23 +13,6 @@
 <body>
 <!-- body code goes here -->
 <header>
-    <!--input type="hidden" id="path" value="{{ url('') }}" >
-    <section class="menu">
-        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #5970B6;">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            @include('layouts.menu')
-            <div class="busca-gen" align="right">
-                <form action="#">
-                    <input type="text" placeholder="Buscar Promociones" name="search">
-                    <button type="submit"><i class="fa fa-search"></i></button>
-                </form>
-            </div>
-        </nav>
-
-    </section-->
     <section class="hd-logo"><span class="extra-logo-sm">eucari</span></section>
 
     @include('layouts.totales')
@@ -37,8 +20,18 @@
     @include('layouts.errors')
 
     @include('layouts.messages')
-
+</header>
+{{ csrf_field() }}
+<main>
     <section class="RB">
+        @if ( isset($slots) && auth()->user()->user_type == 2 )
+            @include('customers.cupones')
+        @endif
+    </section>
+
+    @yield('content')
+
+    <section>
         @if( auth()->check() )
             @if( Auth::user()->user_type == 1 )
                 <div>
@@ -58,48 +51,18 @@
                 </div>
             @else
                 <div>
+                    <a id="get-slot" href="#">Adquirir Nuevo Portador</a>
+                </div>
+                <div>
                     <a href="{{ route('clientes.pagar') }}">Pagar con Monedas</a>
                 </div>
-                <div>
-                    <a href="{{ route('clientes.listar') }}">Buscar Promociones</a>
-                </div>
-                <div>
-                    <a id="get-slot" href="#">Adquitir Slots</a>
-                </div>
             @endif
-                <div>
-                    <a href="{{ route('logout') }}">Cerrar Sesión</a>
-                </div>
+            <div>
+                <a href="{{ route('logout') }}">Cerrar Sesión</a>
+            </div>
         @endif
     </section>
-
-
-    <section class="RB">
-        @if ( isset($slots) && auth()->user()->user_type == 2 )
-            @include('customers.cupones')
-            <p> <a href="#">+ Adquirir nuevo RB</a></p>
-        @endif
-    </section>
-
-</header>
-{{ csrf_field() }}
-@yield('content')
-
-
-<!--footer>
-    <div class="pie">
-        <p>La empresa <br>
-            Historia <br>
-            Propuesta de valor <br>
-            Trabaja con nosotros </p>
-    </div>
-    <div class="pie">
-        <p> Preguntas frecuentes <br>
-            Servicio al cliente <br>
-            Síguenos - Redes</p>
-    </div>
-    <div class="legales">&copy; 2018 Plataforma de Sinergia Comercial, S.A.</div>
-</footer-->
+</main>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>

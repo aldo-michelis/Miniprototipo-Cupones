@@ -38,6 +38,7 @@
 @endif
 <!-- fin de login -->
     <section class="hero">
+        <h1><strong>En Contrucción</strong></h1>
         <p>
             Si quieres participar como establecimiento, regístrate
             <a href="{{ route('negocios.registrar') }}">Aquí</a>

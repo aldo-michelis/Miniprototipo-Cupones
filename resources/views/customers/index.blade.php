@@ -10,11 +10,6 @@
 
 @section('content')
 <main>
-    @if ( auth()->user()->tieneSlotsLibres() )
-    <section class="destacados">
-        <a href="{{ route('clientes.listar') }}" class="btn btn-danger">Buscar Promociones</a>
-    </section>
-    @endif
 </main>
 @endsection
 
