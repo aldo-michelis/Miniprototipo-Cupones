@@ -54,6 +54,9 @@ class CustomerController extends Controller
         # Se crea el usuario
         $user = User::create(Input::all());
 
+        # Se inicia sesión
+        Auth::guard()->login($user);
+
         if( Input::has('coupon_id') ){
             $coupon = Coupon::find(Input::get('coupon_id'));
 
@@ -77,9 +80,6 @@ class CustomerController extends Controller
             'cad' => date('Y-m-d', strtotime(now()->addYear(1))),
             'status' => 0
         ]);
-
-        # Se inicia sesión
-        Auth::guard()->login($user);
 
         session([
             'messages' => [
