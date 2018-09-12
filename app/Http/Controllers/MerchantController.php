@@ -36,7 +36,25 @@ class MerchantController extends Controller
 
     public function salvarRegistro(){
         $data = Input::all();
-        $user = User::create($data);
+	
+	$validator = Validator::make($data, [
+            'username' => 'required|email|unique:users,username',
+            'password' => 'required|same:password_confirm',
+        ],[
+            'username.required' => 'El correo debe de estar presente.',
+            'username.email'    => 'Por favor inserte un correo valido.',
+            'username.unique'   => 'El correo :input ya esta registrado.',
+            'password.required' => 'El password debe de estar presente.',
+            'password.same'     => 'El password y la confirmacion de password deben de ser iguales.',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('negocios/registrar')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+	$user = User::create($data);
         $image = '';
         if( Input::hasFile('logo') ){
             $file = Input::file('logo');

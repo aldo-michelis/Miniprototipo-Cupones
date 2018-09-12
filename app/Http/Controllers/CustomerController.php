@@ -69,7 +69,7 @@ class CustomerController extends Controller
                 'status' => 0
             ]);
 
-            return redirect('clientes/listar-cupones/' . $coupon->id);
+            return redirect('clientes');
         }
 
         # Se asigna un slot con el usuario 1
