@@ -77,6 +77,8 @@ class CustomerController extends Controller
                 'user_id' => $user->id
             ]);
 
+            $this->enviarPorMensaje($detail->id);
+
             return redirect('clientes');
         }
 
