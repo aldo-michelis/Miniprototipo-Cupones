@@ -76,10 +76,10 @@ $(document).ready(function () {
             icon: "info",
             buttons: {
                 cancel: 'Regresar',
-                /*enviar: {
-                    text: 'Enviar a mi telefono',
+                enviar: {
+                    text: 'Enviar a mi correo',
                     value: 'enviar',
-                },*/
+                },
                 borrar: {
                     text: 'Eliminar',
                     value: 'delete',
@@ -89,10 +89,9 @@ $(document).ready(function () {
         }).then((response) => {
             switch (response){
                 case 'enviar':
-                    if ( _phone != '' ) {
                         swal({
                             title:  'Notificación',
-                            text:   'Es correcto el numero: ' + _phone,
+                            text:   'Se enviara al correo: ' + _phone,
                             icon:   'warning',
                         }).then(_phone => {
                             if(!_phone) throw null;
@@ -106,16 +105,6 @@ $(document).ready(function () {
                                 icon:   'success'
                             });
                         });
-                    }else{
-                        swal({
-                            text: "Por favor ingrese en telefono al que se va a enviar el codigo.",
-                            content: 'input',
-                            button:{
-                                text: 'Enviar',
-                                value: true
-                            }
-                        });
-                    }
                     break;
 
                 case 'delete' :
