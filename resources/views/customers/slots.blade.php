@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('title')
-    <title>Buscar Slots | {{ config('app.name') }}</title>
+    <title>Buscar Portadores | {{ config('app.name') }}</title>
 @endsection
 
 @section('content')
     <main>
-            <h1>Slots Publicados</h1>
+            <h1>Portadores Publicados</h1>
             <section class="RB">
                 @foreach( $receptores as $receptor )
                     <div class="sel-slot" data-id="{{ $receptor->id }}">

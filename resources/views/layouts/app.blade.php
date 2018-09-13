@@ -47,7 +47,7 @@
                     <a href="{{ route('negocios.cobrar') }}">Pagos con Monedas</a>
                 </div>
                 <div>
-                    <a href="{{ route('negocios.publicar') }}">Publicar Slots</a>
+                    <a href="{{ route('negocios.publicar') }}">Publicar Portador</a>
                 </div>
             @else
                 <div>

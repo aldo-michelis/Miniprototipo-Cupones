@@ -170,8 +170,8 @@ $(document).ready(function () {
 
     $('#get-slot').click(function () {
         swal({
-            title: 'Adquirir un nuevo receptor de Bono',
-            text: 'Con un nuevo Receptor de Bonos, podrás aprovechar más Bonos cuando tus Receptores actuales estén ocupados. \n' +
+            title: 'Adquirir un nuevo Portador',
+            text: 'Con un nuevo Portador, podrás aprovechar más Bonos cuando tus Receptores actuales estén ocupados. \n' +
             'Al seleccionarlo, adquieres de inmediato tu Receptor que podrás usar y pagar cuando valides el primer Bono en cualquier Negocio Registrado. El costo es de $10 mensuales o $100 anuales.\n' +
             'También puedes buscar NRs que están regalando Receptores de Bonos',
             icon: 'info',
@@ -219,8 +219,8 @@ $(document).ready(function () {
     $('.sel-slot').click(function () {
         var _id     = $(this).data('id');
         swal({
-            title: 'Adquirir un nuevo receptor de Bono',
-            text: 'Con un nuevo Receptor de Bonos, podrás aprovechar más Bonos cuando tus Receptores actuales estén ocupados. \n' +
+            title: 'Adquirir un nuevo Portador',
+            text: 'Con un nuevo Portador, podrás aprovechar más Bonos cuando tus Receptores actuales estén ocupados. \n' +
             'Al seleccionarlo, adquieres de inmediato tu Receptor que podrás usar y pagar cuando valides el primer Bono en cualquier Negocio Registrado.',
             icon: 'info',
             buttons: ['Calcelar', 'Adjudicar']
