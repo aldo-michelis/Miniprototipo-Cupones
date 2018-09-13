@@ -186,13 +186,44 @@ class MerchantController extends Controller
     }
 
     public function promocionSalvar(){
+        $data = Input::all();
+
+        $validator = Validator::make($data, [
+            'qty' => 'required|numeric',
+            'value' => 'required|numeric'
+        ],[
+            'qty.numeric' => 'La cantidad debe de ser un numero',
+            'value.numeric'  => 'El valor debe de ser un numero',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('negocios/agregar-codigos')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        if( $data['currency'] == 2 ){
+            $monto = $data['value'];
+            $qty = $data['qty'];
+            $saldo = $data['mc_saldo'];
+
+            if( ($monto * $qty) > $saldo ) {
+                return redirect('negocios/preconfigurar')
+                    ->withErrors(['error' => 'No tiene saldo para esta cantidad de cupones'])
+                    ->withInput();
+            }
+            $user = auth()->user();
+            $user->mc_saldo -= ($monto * $qty);
+            $user->save();
+        }
+
         $cupon = Coupon::create(Input::all());
         return redirect()->route('promocion.ver',['id' => $cupon->id]);
     }
 
     public function verPromo($coupon_id){
-        $coupon = Coupon::where('id', $coupon_id)->select('url')->first();
-        return view('merchants.promocion',['enlace' => $coupon->url]);
+        $coupon = Coupon::where('id', $coupon_id)->select(['id','url'])->first();
+        return view('merchants.promocion',['enlace' => $coupon->url, 'id' => $coupon->id]);
     }
 
     public function verCobros(){

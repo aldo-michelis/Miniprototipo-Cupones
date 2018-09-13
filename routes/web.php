@@ -36,9 +36,11 @@ Route::get('/new', function(){
     return "Usuarios Creados";
 });
 
-Route::get('code', function ()
+Route::get('code/{id}', function ( $id )
 {
-    return QrCode::size(200)->margin(10)->generate('https://m.facebook.com');
+    $url = \App\Coupon::where('id', $id)->select('url')->first();
+    $code = QrCode::format('png')->size(1000)->margin(3)->generate('http://192.168.0.13/Miniprototipo-Cupones/public/promociones/'.$url->url, 'code.png');
+    return response()->download('code.png')->deleteFileAfterSend(true);
 });
 
 Auth::routes();

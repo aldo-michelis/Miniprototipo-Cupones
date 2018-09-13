@@ -13,6 +13,8 @@
         </a>
     </strong>
     <br>
+    <a href="http://192.168.0.13/Miniprototipo-Cupones/public/code/{{ $id }}">Descargar Codigo QR</a>
+    <br>
     {!! QrCode::size(200)->margin(3)->generate('http://18.223.232.129/public/promocion/'.$enlace) !!}
 </main>
 @endsection
