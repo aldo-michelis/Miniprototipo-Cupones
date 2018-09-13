@@ -18,7 +18,9 @@
 </header>
 
 <main>
-    @include('layouts.errors')
+    @if( isset($coupon))
+    <img src="{{ asset($coupon->user->merchantImage()) }}" alt="">
+    @endif
     <h1>Registro de cliente</h1>
     <section class="reg-cliente">
         <form action="{{ route('clientes.registrar') }}" method="post">
