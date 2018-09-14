@@ -33,10 +33,6 @@ $(document).ready(function () {
                                 if (phone) {
                                     $.ajax({
                                         url: 'enviar-mensaje/' + _id,
-                                        data: {
-                                            id: 'algun id',
-                                            _token: $('input[name=_token]').val()
-                                        },
                                         dataType: 'JSON',
                                         success: function(data){
                                             if ( data.status ){
