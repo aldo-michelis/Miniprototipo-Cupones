@@ -37,7 +37,7 @@ class MerchantController extends Controller
     public function salvarRegistro(){
         $data = Input::all();
 	
-	$validator = Validator::make($data, [
+	    $validator = Validator::make($data, [
             'username' => 'required|email|unique:users,username',
             'password' => 'required|same:password_confirm',
         ],[
@@ -58,7 +58,8 @@ class MerchantController extends Controller
         $image = '';
         if( Input::hasFile('logo') ){
             $file = Input::file('logo');
-            $image = Storage::put('images', $file, 'public');
+            $image = Storage::put('public', $file );
+            $image = substr($image, 7);
         }
         $data = array_merge($data,['user_id' => $user->id, 'logo' => $image]);
         Merchant::create($data);
