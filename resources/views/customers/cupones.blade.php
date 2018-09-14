@@ -7,10 +7,11 @@
             <img src="{{ asset('images/'.$slot->detail->coupon->moneda().'.png') }}" height="20px" alt="La Strada" align="right">
         </div>
     @else
-        <div class="slot-vacio">
-            <img src="images/eucari-ico.png" height="25px" alt="RB">
-            RB Cortesía de La Strada
-            <img src="images/logo-strada.png" height="20px" alt="La Strada" align="right">
+        <div class="slot-vacio" data-id="{{ $slot->id }}">
+            <span>Cortesía de {{ $slot->user->name }}</span>
+            <small class="vigencia">Hasta {{ date('d/m/Y', strtotime($slot->cad)) }}</small>
+            <img src="{{ asset('images/RB.png') }}" height="20px" align="right" alt="slot de Cupon" align="right">
+            <img src="{{ asset($slot->merchant->merchantImage()) }}" align="right" height="25px" alt="slot de Cupon">
         </div>
     @endif
 @endforeach
