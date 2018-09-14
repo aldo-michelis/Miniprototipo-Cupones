@@ -177,10 +177,10 @@ $(document).ready(function () {
         }).then(result => {
            switch( result ){
                case 'months':
-                   return fetch('clientes/adquirir-slot/' + result);
+                   return fetch('/public/clientes/adquirir-slot/' + result);
                    break;
                case 'years':
-                   return fetch('clientes/adquirir-slot/' + result);
+                   return fetch('/public/clientes/adquirir-slot/' + result);
                    break;
                case 'listar':
                    window.location.replace('clientes/adquirir');
@@ -191,7 +191,7 @@ $(document).ready(function () {
 
             if (response.status) {
                 swal({
-                    title: "Información Impotante",
+                    title: "Información Importante",
                     text: "Se te ha agregado un nuevo contenedor de bonos.",
                     icon: "success"
                 }).then(result => {
