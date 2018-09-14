@@ -148,9 +148,7 @@ class MerchantController extends Controller
 
             $slot = Slot::where('user_id', $user->id)
                 ->where('coupon_id', $coupon->id)
-                ->get();
-
-            return $slot;
+                ->first();
 
             $slot->update([
                 'coupon_id' => 0
