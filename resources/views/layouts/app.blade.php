@@ -22,6 +22,7 @@
     @include('layouts.messages')
 </header>
 {{ csrf_field() }}
+<label>{{ auth()->user()->name }} | {{ auth()->user()->username }}</label>
 <main>
     <section class="RB">
         @if ( isset($slots) && auth()->user()->user_type == 2 )

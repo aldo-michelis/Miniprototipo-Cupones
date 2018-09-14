@@ -19,7 +19,7 @@
 
 <main>
     @if( isset($coupon))
-    <img src="{{ asset($coupon->user->merchantImage()) }}" alt="">
+    <img height="100px" src="{{ asset(Storage::url($coupon->user->merchantImage())) }}" alt="">
     @endif
     <h1>Registro de cliente</h1>
     <section class="reg-cliente">

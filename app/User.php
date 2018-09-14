@@ -95,7 +95,7 @@ class User extends Authenticatable
     public function merchantImage(){
         if( $this->user_type == 1 ) {
             $merchant = $this->merchant;
-            return 'public/' . $merchant->logo;
+            return 'public/'.$merchant->logo;
         }else {
             return 'images/default.jpeg';
         }

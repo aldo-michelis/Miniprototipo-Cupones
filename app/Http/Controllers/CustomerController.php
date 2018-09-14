@@ -61,23 +61,24 @@ class CustomerController extends Controller
         if( Input::has('coupon_id') ){
             $coupon = Coupon::find(Input::get('coupon_id'));
 
-            # Se asigna un slot con el usuario 1
-            $slot = Slot::create([
-                'user_id' => $user->id,
-                'merchant_id' => $coupon->user_id,
-                'coupon_id' => $coupon->id,
-                'cad' => date('Y-m-d', strtotime(now()->addYear(1))),
-                'status' => 0
-            ]);
-
-            $detail = CouponDetail::create([
+	    $detail = CouponDetail::create([
                 'coupon_id' => $coupon->id,
                 'code' => $this->getRandomCode(),
                 'status' => 0,
                 'user_id' => $user->id
             ]);
 
-            $this->enviarPorMensaje($detail->id);
+
+            # Se asigna un slot con el usuario 1
+            $slot = Slot::create([
+                'user_id' => $user->id,
+                'merchant_id' => $coupon->user_id,
+                'coupon_id' => $detail->id,
+                'cad' => date('Y-m-d', strtotime(now()->addYear(1))),
+                'status' => 0
+            ]);
+
+            $this->enviarPorMensaje($coupon->id);
 
             return redirect('clientes');
         }
@@ -227,8 +228,9 @@ class CustomerController extends Controller
     {
         $detail = CouponDetail::where('coupon_id', $id)
                                 ->where('user_id', auth()->id())
-                                ->where('status', 0)->get();
-        Mail::to(auth()->user()->username)->send(new CodeSendingMail($detail[0]));
+                                ->where('status', 0)->first();	
+
+	Mail::to(auth()->user()->username)->send(new CodeSendingMail($detail));
         return response()->json(['status' => true]);
     }
 
