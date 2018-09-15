@@ -8,11 +8,11 @@
 <main>
     <section class="RB">
         <h1>Promociones destacadas</h1>
-        @foreach( $cuopons as $cuopon )
-            <div class="coupon" data-desc="{{ $cuopon->description }}" data-id="{{ $cuopon->id }}">
-                <img src="{{ asset('images/logo-strada.png') }}" height="25px" alt="Receptor de Cupon">
-                {{ $cuopon->user->name }}
-                <img src="{{ asset('images/'. $cuopon->moneda().'.png') }}" height="20px" alt="Receptor de Cupon" align="right">
+        @foreach( $cuopons as $coupon )
+            <div class="coupon" data-desc="{{ $coupon->description }}" data-id="{{ $coupon->id }}">
+                <img src="{{ asset(Storage::url( $coupon->user->merchantImage() )) }}" height="25px" alt="Receptor de Cupon">
+                {{ $coupon->user->name }} | ${{ $coupon->value }}
+                <img src="{{ asset('images/'. $coupon->moneda().'.png') }}" height="20px" alt="Receptor de Cupon" align="right">
             </div>
         @endforeach
     </section>
