@@ -34,6 +34,9 @@
 
     <section>
         @if( auth()->check() )
+            <div>
+                <a href="{{ url('') }}">Inicio</a>
+            </div>
             @if( Auth::user()->user_type == 1 )
                 <div>
                     <a href="{{ route('negocios.agregar') }}">Publicar Bonos</a>
