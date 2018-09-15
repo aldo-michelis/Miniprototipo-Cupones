@@ -178,11 +178,15 @@ $(document).ready(function () {
         }).then(result => {
            switch( result ){
                case 'months':
-                   return fetch('/clientes/adquirir-slot/' + result);
-                   break;
                case 'years':
-                   return fetch('/clientes/adquirir-slot/' + result);
-                   break;
+                   swal({
+                       title: "Información Importante",
+                       text: "Por el momento estamos en contrucción y no podemos cobrarte, por favor busca las promociones publicadas por los negocios.",
+                       icon: "warning"
+                   }).then(result => {
+                       window.location.replace('clientes/adquirir');
+                   });
+                    break;
                case 'listar':
                    window.location.replace('clientes/adquirir');
                    break;
