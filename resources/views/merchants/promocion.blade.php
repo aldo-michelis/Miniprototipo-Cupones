@@ -13,7 +13,7 @@
         </a>
     </strong>
     <br>
-    <a href="https://eucari.como/code/{{ $id }}">Descargar Codigo QR</a>
+    <a href="https://eucari.com/code/{{ $id }}">Descargar Codigo QR</a>
     <br>
     {!! QrCode::size(200)->margin(3)->generate('https://eucari.com/promocion/'.$enlace) !!}
 </main>

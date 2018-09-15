@@ -12,7 +12,7 @@
 */
 
 
-Route::get('/new', function(){
+/*Route::get('/new', function(){
 
     $user = App\User::create([
         'username' => 'admin@correo.com',
@@ -34,7 +34,7 @@ Route::get('/new', function(){
     ]);
 
     return "Usuarios Creados";
-});
+});*/
 
 Route::get('code/{id}', function ( $id )
 {

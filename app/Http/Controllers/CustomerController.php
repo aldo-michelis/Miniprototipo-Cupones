@@ -240,16 +240,15 @@ class CustomerController extends Controller
     public function eliminarCuponDetalle(){
         $id = Input::get('id');
 
-        $slot = Slot::where('coupon_id', $id)->update([
-            'coupon_id' => 0
-        ]);
-        $detail = CouponDetail::where('id', $id)->first();
-
-        $coupon = Coupon::where('id', $detail->coupon_id)->first();
-
+	$coupon = Coupon::where('id', $id)->first();
+        $detail = CouponDetail::where('coupon_id', $coupon->id)->where('user_id', auth()->id())->first();
+	$slot = Slot::where('coupon_id', $detail->id)->first();
         $coupon->update([
             'qty' => $coupon->qty += 1
         ]);
+	$slot->update([
+	    'coupon_id' => 0
+	]);
         $detail->delete();
 
         return response()->json(['status' => true ]);

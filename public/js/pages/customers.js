@@ -38,7 +38,9 @@ $(document).ready(function () {
                                             if ( data.status ){
                                                 swal('Se ha enviado correctamente', {
                                                     icon: "success",
-                                                });
+                                                }).then(result => {
+                    					window.location.reload();
+                				});
                                             }
                                         }
                                     });
@@ -53,7 +55,6 @@ $(document).ready(function () {
                                     });
                                 }
                             });
-                            location.reload(true);
                         }
                     }
                 });
@@ -184,7 +185,7 @@ $(document).ready(function () {
                    return fetch('/clientes/adquirir-slot/' + result);
                    break;
                case 'listar':
-                   window.location.replace('clientes/adquirir');
+                   window.location.replace('/clientes/adquirir');
                    break;
            }
         }).then(response => {
