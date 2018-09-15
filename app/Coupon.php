@@ -34,4 +34,15 @@ class Coupon extends Model
         }
         return $ret;
     }
+
+    public function monedaNombre(){
+        $ret = '';
+        if( $this->currency == 1 ) {
+            $ret .= 'EU';
+        }
+        else if ( $this->currency == 2 ){
+            $ret .= 'CARI';
+        }
+        return $ret;
+    }
 }
