@@ -55,8 +55,11 @@ class User extends Authenticatable
 
     }
 
-    public function tieneCuponesActivos(){
-        $cpns = CouponDetail::where('user_id', $this->id)->where('status', 0)->get();
+    public function tieneCuponActivo($id){
+        $cpns = CouponDetail::where('user_id', $this->id)
+            ->where('status', 0)
+            ->where('coupon_id', $id)
+            ->get();
         return (count($cpns) == 0);
     }
 

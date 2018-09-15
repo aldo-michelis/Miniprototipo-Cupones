@@ -7,7 +7,7 @@ $(document).ready(function () {
             text: _info,
             icon: "info",
             buttons: ['Regresar', 'Adjudicar']
-        }).then((adjudicar) => {
+        }).then(adjudicar => {
             if (adjudicar) {
                 $.ajax({
                     url: "cupon/" + _id,
@@ -53,6 +53,7 @@ $(document).ready(function () {
                                     });
                                 }
                             });
+                            location.reload(true);
                         }
                     }
                 });
