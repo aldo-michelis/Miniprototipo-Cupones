@@ -27,7 +27,7 @@
                                    disabled="true" checked="true"
                                     @endif >
                                     </td>
-                                <td><label>{{ $payment->customer->name}}</label></td>
+                                <td><label>{{ $payment->customer->username}}</label></td>
                                 <td><label for="">{{ $payment->amount }}</label></td>
                                 <td><label for="">{{ date('d/m/Y', strtotime($payment->created_at)) }}</label></td>
                             </tr>
