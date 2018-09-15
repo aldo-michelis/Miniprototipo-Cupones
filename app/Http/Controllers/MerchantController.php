@@ -156,12 +156,13 @@ class MerchantController extends Controller
             ]);
 
             return redirect()->route('negocios.validar');
-        }else {
+        }else{
             $id = Auth::id();
             $search = Input::get('search');
             $coupon = CouponDetail::with(['coupon' => function ($query) use ($id) {
                 $query->where('user_id', $id)->first();
-            }])->where('code', $search)->first();
+            }])->where('code', $search)->where('status', 0)->first();
+
             if (isset($coupon->coupon)) {
                 return view('merchants.validar', ['cupon' => $coupon]);
             } else {
