@@ -22,7 +22,11 @@
                             <tr @if( $payment->status )
                                 class="alert-success"
                                     @endif >
-                                <td><input type="checkbox" class="save-pay" value="{{ $payment->id }}"></td>
+                                <td><input type="checkbox" class="save-pay" value="{{ $payment->id }}"
+                                   @if( $payment->status )
+                                   disabled="true" checked="true"
+                                    @endif >
+                                    </td>
                                 <td><label>{{ $payment->customer->name}}</label></td>
                                 <td><label for="">{{ $payment->amount }}</label></td>
                                 <td><label for="">{{ date('d/m/Y', strtotime($payment->created_at)) }}</label></td>

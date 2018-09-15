@@ -155,7 +155,7 @@ class MerchantController extends Controller
                 'coupon_id' => 0
             ]);
 
-            return view('merchants.validar');
+            return redirect()->route('negocios.validar');
         }else {
             $id = Auth::id();
             $search = Input::get('search');
@@ -232,9 +232,12 @@ class MerchantController extends Controller
 
     public function marcarCobros(){
         $id = Input::get('id');
-        $payment = Payment::where('id', $id)->update([
-            'status' => 1
-        ]);
+        $payment = Payment::with(['merchant'])->where('id', $id)->first();
+        $merchant = $payment->merchant;
+        $merchant->mc_saldo += $payment->amount;
+        $merchant->save();
+        $payment->status = 1;
+        $payment->save();
         return response()->json(['status' => $payment]);
     }
 
