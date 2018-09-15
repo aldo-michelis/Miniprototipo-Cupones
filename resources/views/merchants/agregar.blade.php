@@ -14,7 +14,7 @@
                 <div class="form-style-negocio-inner">
                     <label for="">Url del Cupon</label>
                     <br>
-                    http://18.223.232.129/public/promociones/<input type="text" name="url" id="url">
+                    https://eucari.com/promocion/<input type="text" name="url" id="url">
                     <br>
                     @else
                         <div class="form-style-negocio">

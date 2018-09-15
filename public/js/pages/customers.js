@@ -178,10 +178,10 @@ $(document).ready(function () {
         }).then(result => {
            switch( result ){
                case 'months':
-                   return fetch('/public/clientes/adquirir-slot/' + result);
+                   return fetch('/clientes/adquirir-slot/' + result);
                    break;
                case 'years':
-                   return fetch('/public/clientes/adquirir-slot/' + result);
+                   return fetch('/clientes/adquirir-slot/' + result);
                    break;
                case 'listar':
                    window.location.replace('clientes/adquirir');

@@ -8,13 +8,13 @@
 <main>
     <h3>Enlace de Promoción</h3>
     <strong>
-        <a href="http://18.223.232.129/public/promocion/{{ $enlace }}" target="_blank">
-            http://18.223.232.129/public/promocion/{{ $enlace }}
+        <a href="https://eucari.com/promocion/{{ $enlace }}" target="_blank">
+            https://eucari.com/promocion/{{ $enlace }}
         </a>
     </strong>
     <br>
-    <a href="http://18.223.232.129/public/code/{{ $id }}">Descargar Codigo QR</a>
+    <a href="https://eucari.como/code/{{ $id }}">Descargar Codigo QR</a>
     <br>
-    {!! QrCode::size(200)->margin(3)->generate('http://18.223.232.129/public/promocion/'.$enlace) !!}
+    {!! QrCode::size(200)->margin(3)->generate('https://eucari.com/promocion/'.$enlace) !!}
 </main>
 @endsection
