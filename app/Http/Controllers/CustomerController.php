@@ -106,7 +106,10 @@ class CustomerController extends Controller
     {
         if (Auth::user()->tieneSlotsLibres()) {
             if (!isset($coupon_id))
-                $cuopons = Coupon::with('user')->where('qty', '>', '0')->get();
+                $cuopons = Coupon::with('user')
+                    ->where('qty', '>', '0')
+                    ->where('url', '!=', '#')
+                    ->get();
             else
                 $cuopons = Coupon::with('user')
                     ->where('id', $coupon_id)
