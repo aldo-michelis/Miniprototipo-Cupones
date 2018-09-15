@@ -255,7 +255,7 @@ class MerchantController extends Controller
         ], [
             'qty.numeric' => 'La cantidad debe de ser un numero',
             'qty.required' => 'La cantidad es un valor requerido',
-            'qty.min' => 'La cantidad debe de ser minimo 1 Slot',
+            'qty.min' => 'La cantidad debe de ser minimo 1 Portador',
             'cad.required' => 'La canducidad debe de ser especificada',
         ]);
 
@@ -267,7 +267,7 @@ class MerchantController extends Controller
         Dispenser::create($data);
         session([
             'messages' => [
-                ['text' => 'Se ha publicado el nuevo sloth con exito',
+                ['text' => 'Se ha publicado el nuevo portador con exito',
                     'type' => 'success']
             ]
         ]);

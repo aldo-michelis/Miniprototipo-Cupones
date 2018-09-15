@@ -94,7 +94,7 @@ class CustomerController extends Controller
 
         session([
             'messages' => [
-                ['text' => 'Felicidades has recibido un Slot de cupones de cortesia, que es valido por un año.',
+                ['text' => 'Felicidades has recibido un Portador de cupones de cortesia, que es valido por un año.',
                 'type' => 'success']
             ]
         ]);
@@ -108,7 +108,7 @@ class CustomerController extends Controller
             if (!isset($coupon_id))
                 $cuopons = Coupon::with('user')
                     ->where('qty', '>', '0')
-                    ->where('url', '!=', '#')
+                    ->where('url', '#')
                     ->get();
             else
                 $cuopons = Coupon::with('user')
@@ -118,13 +118,13 @@ class CustomerController extends Controller
             return view('customers.listar', ['cuopons' => $cuopons]);
         }
         return redirect('clientes')->withErrors([
-            'error' => 'Ya no tienes slots libres, por favor, canjea tus cupones o adquiere más slots'
+            'error' => 'Ya no tienes portadores libres, por favor, canjea tus cupones o adquiere más portadores'
         ]);
     }
 
     public function cupon($id){
         if( !Auth::user()->tieneSlotsLibres() ){
-            return response()->json(['status' => false, 'message' => 'Ya no tienes slots libres, por favor, canjea tus cupones o adquiere más slots']);
+            return response()->json(['status' => false, 'message' => 'Ya no tienes portadores libres, por favor, canjea tus cupones o adquiere más portadores']);
         }else {
             $user_id = auth()->id();
             $coupon = Coupon::where('id', $id)->first();
