@@ -13,7 +13,6 @@
 <!-- body code goes here -->
 <!-- contenido general code goes here -->
 <main>
-
 @if( Auth::guest() )
     <!-- login -->
         <div class="registro-inic">
@@ -37,6 +36,16 @@
         </div>
 @endif
 <!-- fin de login -->
+    @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @foreach ($errors->all() as $error)
+                <p>{{ $error }}</p>
+            @endforeach
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
     <section class="hero">
         <h1><strong>En Construcción</strong></h1>
         <p>Muy pronto estará disponible en este espacio todo lo bueno que pueden ofrecer los establecimientos que frecuentas para agradecer tu preferencia.</p>
