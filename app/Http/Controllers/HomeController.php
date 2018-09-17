@@ -28,12 +28,9 @@ class HomeController extends Controller
 
     public function promocionUrl($url = null){
         $coupon = Coupon::where('url', $url)->first();
-
-        if( isset($coupon) && count($coupon) > 0 ){
+        if( isset($coupon) && count($coupon) > 0 && $coupon->qty > 0){
             return view('customers.registrar',['coupon' => $coupon]);
-
         }
-
-        return redirect('');
+        return redirect('')->withErrors(['Error' => 'Este cupon ya se encuentra agotado, por favor valida con el negocio emisor.']);
     }
 }

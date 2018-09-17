@@ -61,13 +61,15 @@ class CustomerController extends Controller
         if( Input::has('coupon_id') ){
             $coupon = Coupon::find(Input::get('coupon_id'));
 
-	    $detail = CouponDetail::create([
-                'coupon_id' => $coupon->id,
-                'code' => $this->getRandomCode(),
-                'status' => 0,
-                'user_id' => $user->id
-            ]);
+            $detail = CouponDetail::create([
+                    'coupon_id' => $coupon->id,
+                    'code' => $this->getRandomCode(),
+                    'status' => 0,
+                    'user_id' => $user->id
+                ]);
 
+            $coupon->qty -= 1;
+            $coupon->save();
 
             # Se asigna un slot con el usuario 1
             $slot = Slot::create([
