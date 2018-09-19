@@ -11,7 +11,7 @@
 |
 */
 
-
+/*
 Route::get('/new', function(){
 
     $user = App\User::create([
@@ -35,24 +35,25 @@ Route::get('/new', function(){
 
     return "Usuarios Creados";
 });
-
+*/
+/*
 Route::get('code/{id}', function ( $id )
 {
     $url = \App\Coupon::where('id', $id)->select('url')->first();
     $code = QrCode::format('png')->size(1000)->margin(3)->generate('https://eucari.com/promocion/'.$url->url, 'code.png');
     return response()->download('code.png')->deleteFileAfterSend(true);
 });
-
+*/
 Auth::routes();
 
-Route::get('', 'HomeController@index')->name('');
-Route::get('promocion/{url?}', 'HomeController@promocionUrl')->name('promocion');
+//Route::get('', 'HomeController@index')->name('');
+//Route::get('promocion/{url?}', 'HomeController@promocionUrl')->name('promocion');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 // Rutas del Cliente
 Route::prefix('clientes')->group(function (){
-    Route::get('registrar', 'CustomerController@registrar')->name('clientes.registrar');
-    Route::post('registrar', 'CustomerController@salvarRegistro')->name('clientes.registrar');
+    //Route::get('registrar', 'CustomerController@registrar')->name('clientes.registrar');
+    //Route::post('registrar', 'CustomerController@salvarRegistro')->name('clientes.registrar');
 
     Route::middleware('auth')->group(function() {
         Route::get('', 'CustomerController@index')->name('clientes.index');
@@ -69,8 +70,8 @@ Route::prefix('clientes')->group(function (){
 
 // Rutas del Comerciante
 Route::prefix('negocios')->group(function (){
-    Route::get('registrar', 'MerchantController@registrar')->name('negocios.registrar');
-    Route::post('registrar', 'MerchantController@salvarRegistro')->name('negocios.registrar');
+    //Route::get('registrar', 'MerchantController@registrar')->name('negocios.registrar');
+    //Route::post('registrar', 'MerchantController@salvarRegistro')->name('negocios.registrar');
     Route::middleware('auth')->group(function() {
         Route::get('', 'MerchantController@index')->name('negocios.index');
         Route::get('agregar-codigos', 'MerchantController@agregarCodigos')->name('negocios.agregar');
