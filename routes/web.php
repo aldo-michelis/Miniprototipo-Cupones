@@ -11,8 +11,8 @@
 |
 */
 
-
-/*Route::get('/new', function(){
+/*
+Route::get('/new', function(){
 
     $user = App\User::create([
         'username' => 'admin@correo.com',
@@ -34,7 +34,8 @@
     ]);
 
     return "Usuarios Creados";
-});*/
+});
+*/
 
 Route::get('code/{id}', function ( $id )
 {
@@ -69,7 +70,7 @@ Route::prefix('clientes')->group(function (){
 
 // Rutas del Comerciante
 Route::prefix('negocios')->group(function (){
-    Route::get('registrar', 'MerchantController@registrar')->name('negocios.registrar');
+    Route::get('wpeoetrnddmslfhruneirun', 'MerchantController@registrar')->name('negocios.registrar');
     Route::post('registrar', 'MerchantController@salvarRegistro')->name('negocios.registrar');
     Route::middleware('auth')->group(function() {
         Route::get('', 'MerchantController@index')->name('negocios.index');

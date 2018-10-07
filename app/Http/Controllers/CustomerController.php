@@ -231,12 +231,13 @@ class CustomerController extends Controller
 
     public function enviarPorMensaje($id)
     {
-        $detail = CouponDetail::where('coupon_id', $id)
+	return response()->json(['status' => true]);
+        /*$detail = CouponDetail::where('coupon_id', $id)
                                 ->where('user_id', auth()->id())
                                 ->where('status', 0)->first();	
 
 	Mail::to(auth()->user()->username)->send(new CodeSendingMail($detail));
-        return response()->json(['status' => true]);
+        return response()->json(['status' => true]);*/
     }
 
     public function eliminarCuponDetalle(){

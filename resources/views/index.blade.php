@@ -49,11 +49,16 @@
     <section class="hero">
         <h1><strong>En Construcción</strong></h1>
         <p>Muy pronto estará disponible en este espacio todo lo bueno que pueden ofrecer los establecimientos que frecuentas para agradecer tu preferencia.</p>
-        <p></p>
-        <p>
-            Si quieres participar como establecimiento, regístrate
-            <a href="{{ route('negocios.registrar') }}">Aquí</a>
-        </p>
+        <p>Si deseas participar en esta comunidad, haznos llegar un correo con los siguientes datos:</p>
+	<ul>
+		<li>Nombre</li>
+		<li>Telefono</li>
+		<li>Dirección</li>
+		<li>Nombre del Negocio</li>
+		<li>Giro</li>
+	</ul>
+	<p>Al correo <strong>admin@eucari.com</strong> y uno de nuestros asesores se contactara contigo.</p>
+	<p>¡Te espoeramos!</p>
         <p>&nbsp;</p>
         <img src="images/eucari-logo.png" alt="eucary" width="200" class="img-fluid">
         <p>&nbsp;</p>

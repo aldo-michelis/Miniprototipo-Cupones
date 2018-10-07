@@ -49,7 +49,7 @@ class MerchantController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect('negocios/registrar')
+            return redirect('negocios/wpeoetrnddmslfhruneirun')
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -133,7 +133,14 @@ class MerchantController extends Controller
             // Cliente
             if( $coupon->coupon->currency == 2 ){
                 $user->mc_saldo +=  $coupon->coupon->value;
+	        $user->total += $coupon->coupon->value;
                 $user->save();
+
+
+		$merchant = User::find($coupon->coupon->user_id);
+                $merchant->total += $coupon->coupon->value;
+                $merchant->save();
+
             }else{
                 $total = ($monto - $coupon->coupon->value);
 

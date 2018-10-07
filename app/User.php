@@ -64,20 +64,25 @@ class User extends Authenticatable
     }
 
     public function totalDePromociones(){
-        if ($this->user_type == 2)
+        if ($this->user_type == 2){
             $total = Coupon::join('coupon_details', 'coupons.id', 'coupon_details.coupon_id')
                             ->where('coupon_details.status', 1)
                             ->where('coupon_details.user_id', $this->id)
                             ->where('coupons.currency', 1)
                             ->select('value')->sum('value');
-        else
+
+	    $pagos = Payment::where('customer_id', $this->id)->where('status', 1)->select('amount')->sum('amount');
+        }else{
             $total = Coupon::join('coupon_details', 'coupons.id', 'coupon_details.coupon_id')
                 ->where('coupons.user_id', $this->id)
                 ->where('coupons.currency', 1)
                 ->where('coupon_details.status', 1)
                 ->select('value')->sum('value');
+	
+	    $pagos = Payment::where('merchant_id', $this->id)->where('status', 1)->select('amount')->sum('amount');
+	}
 
-        return $total;
+        return $total + $pagos;
     }
 
     public function totalDeCompraVentas(){

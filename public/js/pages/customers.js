@@ -36,7 +36,7 @@ $(document).ready(function () {
                                         dataType: 'JSON',
                                         success: function(data){
                                             if ( data.status ){
-                                                swal('Se ha enviado correctamente', {
+                                                swal('Se ha adjudicado correctamente', {
                                                     icon: "success",
                                                 }).then(result => {
                     					window.location.reload();
@@ -74,10 +74,10 @@ $(document).ready(function () {
             icon: "info",
             buttons: {
                 cancel: 'Regresar',
-                enviar: {
+                /*enviar: {
                     text: 'Enviar a mi correo',
                     value: 'enviar',
-                },
+                },*/
                 borrar: {
                     text: 'Eliminar',
                     value: 'delete',
@@ -86,7 +86,7 @@ $(document).ready(function () {
             }
         }).then((response) => {
             switch (response){
-                case 'enviar':
+                /*case 'enviar':
                         swal({
                             title:  'Notificación',
                             text:   'Se enviara al correo: ' + _phone,
@@ -104,7 +104,7 @@ $(document).ready(function () {
                             });
                         });
                     break;
-
+		*/
                 case 'delete' :
                     swal({
                         title:  'Esta seguro que desea eliminar el codigo.',
